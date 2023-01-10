@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 import * as RaceSelectors from './store/race.selectors';
 import * as RaceActions from './store/race.actions';
 import { Router } from '@angular/router';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-race-list',

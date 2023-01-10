@@ -6,7 +6,14 @@ import { LIST_HEADER_DATA_SERVICE } from 'src/app/models';
 import { ListHeaderDataService } from './store/list-header-data.service';
 import { ListHeaderModule } from 'src/app/shared/list-header/list-header.module';
 import { MatCardModule } from '@angular/material/card';
-import { RouterModule } from '@angular/router'
+import { RouterModule, Routes } from '@angular/router'
+
+const routes: Routes = [
+  {
+    path: '',
+    component: RaceListComponent
+  }
+]
 
 @NgModule({
   declarations: [
@@ -17,7 +24,7 @@ import { RouterModule } from '@angular/router'
     RaceDataModule,
     ListHeaderModule,
     MatCardModule,
-    RouterModule
+    RouterModule.forChild(routes)
   ],
   providers: [
     {

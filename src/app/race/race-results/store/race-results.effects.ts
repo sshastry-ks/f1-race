@@ -6,9 +6,10 @@ import * as RaceResultSelectors from './race-results.selectors';
 import * as SeasonSelectors from '../../../seasons/store/seasons.selectors';
 import * as SeasonActions from '../../../seasons/store/seasons.actions';
 import * as RaceListSelectors from '../../race-list/store/race.selectors'
-import { switchMap, map } from "rxjs";
+import { switchMap, map, filter } from "rxjs";
 import { RaceResultService } from "./race-results.service";
 import { RacesResultsListResponse } from "src/app/models";
+import { routerRequestAction } from "@ngrx/router-store";
 
 
 @Injectable()
@@ -33,8 +34,10 @@ export class RaceResultsEffects {
             this.store.select(RaceListSelectors.selectActiveRaceId),
             this.store.select(RaceResultSelectors.selectRaceResultsQueryParams)
         ]),
+        filter(([_, season, round, _queryParams]) => {
+            return season && round;
+        }),
         switchMap(([_, season, round, queryParams]) => {
-
             return this.raceResultsService.getRaceResultsList(season, round, queryParams.offset * queryParams.limit, queryParams.limit).pipe(
                 map((response: RacesResultsListResponse) => {
                     const { MRData: { RaceTable: { Races: races}, total: totalItems}} = response;
@@ -53,5 +56,21 @@ export class RaceResultsEffects {
         )
     });
 
+    triggerActiveRaceIdChanged$ = createEffect(() => {
+        return this.actions$.pipe(
+            ofType(routerRequestAction),
+            concatLatestFrom(() => this.store.select(RaceListSelectors.selectActiveRaceId)),
+            filter(([{payload: { event }}, activeRaceId]) => {
+                console.log(event.url.indexOf(activeRaceId) < 0)
+                if(event.url.indexOf(activeRaceId) < 0) {
+                    return true;
+                }
 
+                return false;
+            }),
+            map(() => {
+                return SeasonActions.seasonSelectionChanged();
+            })
+        )
+    })
 }

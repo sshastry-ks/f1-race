@@ -2,8 +2,33 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RaceDetailsComponent } from './race-details.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 
+const routes:Routes = [
+  {
+    path: '',
+    component: RaceDetailsComponent,
+    children: [
+      {
+        path: 'results',
+        loadChildren: () => import('../race-results/race-results.module').then(m => m.RaceResultsModule)
+      },
+      {
+        path: 'qualifying',
+        loadChildren: () => import('../race-qualifying/race-qualifying.module').then(m => m.RaceQualifyingModule)
+      },
+      {
+        path: 'driver-standings',
+        loadChildren: () => import('../race-driver-standings/race-driver-standings.module').then(m => m.RaceDriverStandingsModule)
+      },
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'results'
+      }
+    ]
+  },
+]
 
 @NgModule({
   declarations: [
@@ -12,7 +37,7 @@ import { RouterModule } from '@angular/router';
   imports: [
     CommonModule,
     MatSidenavModule,
-    RouterModule
+    RouterModule.forChild(routes)
   ]
 })
 export class RaceDetailsModule { }

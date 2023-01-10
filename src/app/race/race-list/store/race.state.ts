@@ -8,7 +8,6 @@ export interface RaceState extends EntityState<Race> {
     offset: number;
     totalItems: number;
     pageSizeOptions: number[];
-    selectedRaceId: string | null;
 }
 
 export function selectId(race: Race) {

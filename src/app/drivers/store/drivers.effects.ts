@@ -5,7 +5,7 @@ import * as DriverActions from './drivers.actions';
 import * as DriverSelectors from './drivers.selectors';
 import * as SeasonSelectors from '../../seasons/store/seasons.selectors';
 import * as SeasonActions from '../../seasons/store/seasons.actions';
-import { switchMap, map } from "rxjs";
+import { switchMap, map, filter } from "rxjs";
 import { DriverService } from "./drivers.service";
 import { DriversListResponse } from "src/app/models";
 
@@ -31,8 +31,10 @@ export class DriverEffects {
             this.store.select(SeasonSelectors.selectCurrentSeason),
             this.store.select(DriverSelectors.selectDriverQueryParams)
         ]),
+        filter(([_, season, _queryParams]) => {
+            return season
+        }),
         switchMap(([_, season, queryParams]) => {
-
             return this.driverService.getDriversList(season, queryParams.offset * queryParams.limit, queryParams.limit).pipe(
                 map((response: DriversListResponse) => {
                     const { MRData: { DriverTable: { Drivers: drivers}, total: totalItems}} = response;
@@ -47,9 +49,9 @@ export class DriverEffects {
     resetPaginationparams$ = createEffect(() => {
         return this.actions$.pipe(
             ofType(SeasonActions.seasonSelectionChanged),
-            map((_) => DriverActions.resetPaginationParams())
+            map((_) => {
+                return DriverActions.resetPaginationParams()
+            })
         )
     });
-
-
 }

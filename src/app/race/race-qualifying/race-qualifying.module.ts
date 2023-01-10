@@ -6,7 +6,15 @@ import { ListHeaderDataService } from './store/list-header-data.service';
 import { MatCardModule } from '@angular/material/card';
 import { ListHeaderModule } from 'src/app/shared/list-header/list-header.module';
 import { RaceResultsDataModule } from './store/race-qualifying.data.module';
+import { RouterModule, Routes } from '@angular/router';
 
+
+const routes: Routes = [
+  {
+    path: '',
+    component: RaceQualifyingComponent
+  }
+]
 
 @NgModule({
   declarations: [
@@ -16,7 +24,8 @@ import { RaceResultsDataModule } from './store/race-qualifying.data.module';
     CommonModule,
     MatCardModule,
     ListHeaderModule,
-    RaceResultsDataModule
+    RaceResultsDataModule,
+    RouterModule.forChild(routes)
   ],
   providers: [
     {

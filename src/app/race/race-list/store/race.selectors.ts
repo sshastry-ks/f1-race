@@ -1,7 +1,9 @@
 import { createFeatureSelector, createSelector } from "@ngrx/store";
 import { RequestState } from "src/app/models";
 import { adapter, RaceState } from "./race.state";
-
+import { getSelectors, RouterReducerState } from '@ngrx/router-store';
+import * as AppSelectors from '../../../store/app.selectors';
+import { RouterState } from "src/app/store/app-route-serializer";
 
 const selectRaceFeature = createFeatureSelector<RaceState>('races');
 
@@ -46,6 +48,13 @@ export const selectRaceQueryParams = createSelector(selectCurrnetPage, selectCur
         offset,
         limit
     }
-})
+});
 
-export const selectActiveRaceId = createSelector(selectRaceFeature, (state: RaceState) => state.selectedRaceId || '');
+// route params selector 
+export const selectActiveRaceId = createSelector(AppSelectors.selectRouterState, (routerstate: RouterState | null) => {
+    if(!routerstate || !routerstate.allParams) {
+        return null;
+    }
+    console.log(routerstate.allParams)
+    return routerstate.allParams['raceId'] || '';
+ })

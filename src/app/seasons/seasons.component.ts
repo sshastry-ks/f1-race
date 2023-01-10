@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import * as SeasonActions from './store/seasons.actions';
+import * as selectors from './store/seasons.selectors';
+import { tap } from 'rxjs'
 
 @Component({
   selector: 'app-seasons',
@@ -12,21 +14,9 @@ export class SeasonsComponent {
 
   seasons = ['2018', '2019', '2020', '2021'];
 
-  navLinks = [
-    {
-        label: 'Drivers',
-        path: './drivers',
-        index: 0
-    }, {
-        label: 'Races',
-        path: './races',
-        index: 1
-    }
-];
-
   constructor(private store: Store) { }
 
   updateSeasonSelection(season: string) {
-    this.store.dispatch(SeasonActions.seasonSelectionChanged({newSeason: season}));
+    // this.store.dispatch(SeasonActions.seasonSelectionChanged({newSeason: season}));
   }
 }

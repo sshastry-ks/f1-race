@@ -5,11 +5,18 @@ import { MatCardModule } from '@angular/material/card';
 import { MatTabsModule } from '@angular/material/tabs';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatButtonModule} from '@angular/material/button';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DriversComponent } from './drivers.component';
 import { LIST_HEADER_DATA_SERVICE } from '../models';
 import { ListHeaderDataService } from './store/list-header-data.service';
 import { ListHeaderModule } from '../shared/list-header/list-header.module';
+import { RouterModule, Routes } from '@angular/router';
+
+const routes: Routes = [
+  {
+    path: '',
+    component: DriversComponent
+  }
+]
 
 
 @NgModule({
@@ -24,8 +31,8 @@ import { ListHeaderModule } from '../shared/list-header/list-header.module';
     MatTabsModule,
     MatButtonToggleModule,
     MatButtonModule,
-    BrowserAnimationsModule,
-    ListHeaderModule
+    ListHeaderModule,
+    RouterModule.forChild(routes)
   ],
   providers: [
     {

@@ -1,0 +1,26 @@
+<mat-drawer-container class="example-container">
+    <mat-drawer mode="side" opened>
+        <nav>
+            <ul>
+                <li>
+                    <a [routerLink]="['./results']">
+                        Results
+                    </a>
+                </li>
+                <li>
+                    <a [routerLink]="['./qualifying']">
+                        Qualifying
+                    </a>
+                </li>
+                <li>
+                    <a [routerLink]="['./driver-standings']">
+                        Driver Standings
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </mat-drawer>
+    <mat-drawer-content>
+        <router-outlet></router-outlet>
+    </mat-drawer-content>
+</mat-drawer-container>

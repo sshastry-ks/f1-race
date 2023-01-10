@@ -5,7 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 @Injectable()
 export class Test {
     readonly drivers = 'http://ergast.com/api/f1/{{year}}/drivers.json';
-    readonly races = 'http://ergast.com/api/f1/{{year}}/1/driverStandings.json';
+    readonly races = 'http://ergast.com/api/f1/{{year}}.json';
 
     constructor(private httpClient: HttpClient) {}
 
@@ -15,7 +15,7 @@ export class Test {
 
         //return this.httpClient.get(this.drivers.replace('{{year}}', '2018'), {headers});
 
-        return this.httpClient.get(this.drivers.replace('{{year}}', '2018'), {headers});
+        return this.httpClient.get(this.races.replace('{{year}}', '2018'), {headers});
     }
 
 

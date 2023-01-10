@@ -1,0 +1,18 @@
+<section class="seasons">
+    <mat-card *ngFor="let season of seasons" (click)="updateSeasonSelection(season)">
+        <mat-card-content>{{ 'Season ' + season}}</mat-card-content>
+    </mat-card>
+</section>
+
+<mat-tab-group>
+    <mat-tab label="First">
+      <ng-template matTabContent>
+        <app-drivers></app-drivers>
+      </ng-template>
+    </mat-tab>
+    <mat-tab label="Second">
+      <ng-template matTabContent>
+        Content 2 - Loaded
+      </ng-template>
+    </mat-tab>
+</mat-tab-group>

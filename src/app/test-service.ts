@@ -15,7 +15,7 @@ export class Test {
 
         //return this.httpClient.get(this.drivers.replace('{{year}}', '2018'), {headers});
 
-        return this.httpClient.get(this.races.replace('{{year}}', '2018'), {headers});
+        return this.httpClient.get(this.drivers.replace('{{year}}', '2018'), {headers});
     }
 
 

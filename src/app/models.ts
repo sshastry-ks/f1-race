@@ -1,10 +1,26 @@
+export enum RequestState {
+    INIT='init',
+    LOADING='loading',
+    RESOLVED='resolved',
+    ERROR='error'
+}
+
 export interface Driver {
-    id: string;
+    driverId: string;
     givenName: string;
     familyName: string;
     dob: string;
     permanentNumber: string;
     nationality: string;
+}
+
+export interface DriversListResponse {
+    MRData: {
+        DriverTable: {
+            Drivers: Driver[]
+        },
+        total: number;
+    }
 }
 
 export interface RaceResult {

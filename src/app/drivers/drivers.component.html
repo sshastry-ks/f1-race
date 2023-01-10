@@ -1,0 +1,8 @@
+<section>
+    <app-list-header></app-list-header>
+</section>
+<section>
+    <mat-card *ngFor="let driver of drivers$ | async">
+        <mat-card-content>{{driver | json}}</mat-card-content>
+    </mat-card>
+</section>

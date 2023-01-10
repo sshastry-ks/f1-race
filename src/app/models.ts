@@ -1,3 +1,6 @@
+import { InjectionToken } from "@angular/core";
+import { Observable } from "rxjs";
+
 export enum RequestState {
     INIT='init',
     LOADING='loading',
@@ -18,6 +21,15 @@ export interface DriversListResponse {
     MRData: {
         DriverTable: {
             Drivers: Driver[]
+        },
+        total: number;
+    }
+}
+
+export interface RacesListResponse {
+    MRData: {
+        RaceTable: {
+            Races: Race[]
         },
         total: number;
     }
@@ -53,7 +65,17 @@ export interface Race {
     raceName: string;
     season: string;
     time: string;
-    results: RaceResult[];
-    qualyfyings: Qualifying[];
-    driverStandings: DriverStanding[];
+}
+
+export const LIST_HEADER_DATA_SERVICE = new InjectionToken<string>('ListHeaderDataService')
+
+export interface ListHeaderDataFacade {
+    dispatchMovePageAction: (direction: number) => void;
+    dispatchPageSizeChangedAction: (newPageSize: number) => void;
+    getViewModel$: () => Observable<{
+        totalPages: number;
+        currentPage: number;
+        currentPageSize: number;
+        pageSizeOptions: number[]
+    }>;
 }

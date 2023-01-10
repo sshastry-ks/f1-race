@@ -1,0 +1,24 @@
+<div *ngIf="vm$ | async as vm" class="header">
+    <section>
+        <mat-button-toggle-group
+            name="fontStyle"
+            aria-label="Font Style"
+            [value]="vm.currentPageSize"
+        >
+            <mat-button-toggle
+                *ngFor="let pageSize of vm.pageSizeOptions"
+                [value]="pageSize"
+                (click)="updatePageSize(pageSize)"
+            >{{pageSize}}
+            </mat-button-toggle>
+        </mat-button-toggle-group>
+    </section>
+    <section class="pagination">
+        <button mat-raised-button color="primary" (click)="movePage(-1)" [disabled]="vm.currentPage === 0">Back</button>
+        <p>
+            Showing page {{vm.currentPage + 1}} of {{vm.totalPages}}
+        </p>
+        <button mat-raised-button color="primary" (click)="movePage(1)" [disabled]="vm.currentPage === vm.totalPages - 1">Next</button>
+    </section>
+</div>
+

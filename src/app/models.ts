@@ -35,6 +35,19 @@ export interface RacesListResponse {
     }
 }
 
+export type RaceWithResults = Race & {
+    Results: RaceResult[]
+}
+
+export interface RacesResultsListResponse {
+    MRData: {
+        RaceTable: {
+            Races: RaceWithResults[]
+        },
+        total: number;
+    }
+}
+
 export interface RaceResult {
     status: string;
     grid: string;
@@ -45,7 +58,7 @@ export interface RaceResult {
 }
 
 export interface Qualifying {
-    position: number;
+    position: string;
     number: string;
     q1: string;
     q2: string;
@@ -65,6 +78,7 @@ export interface Race {
     raceName: string;
     season: string;
     time: string;
+
 }
 
 export const LIST_HEADER_DATA_SERVICE = new InjectionToken<string>('ListHeaderDataService')

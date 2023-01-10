@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import * as RaceSelectors from './store/race.selectors';
 import * as RaceActions from './store/race.actions';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-race-list',
@@ -16,5 +17,9 @@ export class RaceListComponent {
 
   ngOnInit() {
     this.store.dispatch(RaceActions.enterRaceList());
+  }
+
+  updateSelectedRace(round: string) {
+    this.store.dispatch(RaceActions.updateSelectedRace({selectedRaceId: round}));
   }
 }

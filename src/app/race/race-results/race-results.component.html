@@ -1,1 +1,10 @@
-<p>race-results works!</p>
+<section>
+    <app-list-header></app-list-header>
+</section>
+<section>
+    <mat-card
+        *ngFor="let raceResult of raceResults$ | async"
+    >
+        <mat-card-content>{{raceResult | json}}</mat-card-content>
+    </mat-card>
+</section>

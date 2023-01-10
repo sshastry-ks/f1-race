@@ -49,6 +49,13 @@ const reducer = createReducer(
             limit: initalRaceState.limit,
             offset: initalRaceState.offset
         })
+    }),
+
+    on(RaceActions.updateSelectedRace, (state: RaceState, {selectedRaceId}) => {
+        return {
+            ...state,
+            selectedRaceId
+        }
     })
 )
 

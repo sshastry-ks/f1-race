@@ -15,6 +15,9 @@ export const navigatePage = createAction(
 
 export const resetPaginationParams = createAction('[Race Effects] Reset pagination parameters');
 
+export const updateSelectedRace = createAction(
+    '[Race List] Update selected race', props<{ selectedRaceId: string}>()
+);
 
 // API actions
 

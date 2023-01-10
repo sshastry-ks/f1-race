@@ -47,3 +47,5 @@ export const selectRaceQueryParams = createSelector(selectCurrnetPage, selectCur
         limit
     }
 })
+
+export const selectActiveRaceId = createSelector(selectRaceFeature, (state: RaceState) => state.selectedRaceId || '');

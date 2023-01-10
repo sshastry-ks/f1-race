@@ -31,7 +31,8 @@ const reducer = createReducer(
     on(DriverAtcions.pageSizeChanged, (state: DriverState, {newPageSize}) => {
         return {
             ...state,
-            limit: newPageSize
+            limit: newPageSize,
+            offset: initalDriverState.offset
         }
     }),
 

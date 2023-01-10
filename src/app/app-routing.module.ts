@@ -36,6 +36,11 @@ const routes: Routes = [
           {
             path: 'driver-standings',
             component: RaceDriverStandingsComponent
+          },
+          {
+            path: '',
+            pathMatch: 'full',
+            redirectTo: 'results'
           }
         ]
       },

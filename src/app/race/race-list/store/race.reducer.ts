@@ -31,7 +31,8 @@ const reducer = createReducer(
     on(RaceActions.pageSizeChanged, (state: RaceState, {newPageSize}) => {
         return {
             ...state,
-            limit: newPageSize
+            limit: newPageSize,
+            offset: initalRaceState.offset
         }
     }),
 

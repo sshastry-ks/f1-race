@@ -1,1 +1,8 @@
-
+<section>
+    <app-list-header></app-list-header>
+</section>
+<section>
+    <mat-card *ngFor="let race of races$ | async" [routerLink]="['./', race.round]">
+        <mat-card-content>{{race | json}}</mat-card-content>
+    </mat-card>
+</section>

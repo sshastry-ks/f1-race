@@ -33,7 +33,7 @@ import { RaceDriverStandingsModule } from './race/race-driver-standings/race-dri
     RaceDriverStandingsModule,
     StoreModule.forRoot({}, {}),
     EffectsModule.forRoot([]),
-    StoreDevtoolsModule.instrument({maxAge: 250})
+    StoreDevtoolsModule.instrument({maxAge: 25})
   ],
   providers: [Test],
   bootstrap: [AppComponent]

@@ -48,6 +48,31 @@ export interface RacesResultsListResponse {
     }
 }
 
+export type RaceWithQualifyingList = Race & {
+    QualifyingResults: RaceQualifying[]
+}
+
+
+export interface RacesQualifyingListResponse {
+    MRData: {
+        RaceTable: {
+            Races: RaceWithQualifyingList[]
+        },
+        total: number;
+    }
+}
+
+export interface RaceDriverStandingsResponse {
+    MRData: {
+        StandingsTable: {
+            StandingsLists: {
+                DriverStandings: DriverStanding[]
+            }[]
+        },
+        total: number
+    }
+}
+
 export interface RaceResult {
     status: string;
     grid: string;
@@ -57,7 +82,7 @@ export interface RaceResult {
     driver: Driver;
 }
 
-export interface Qualifying {
+export interface RaceQualifying {
     position: string;
     number: string;
     q1: string;
@@ -67,7 +92,7 @@ export interface Qualifying {
 }
 
 export interface DriverStanding {
-    position: number;
+    position: string;
     driver: Driver;
     points: string;
     wins: string;

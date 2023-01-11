@@ -4,6 +4,7 @@ import * as DriverSelectors from './store/drivers.selectors';
 import * as DriverActions from './store/drivers.actions';
 import { combineLatest, map } from 'rxjs';
 import { Driver } from '../models';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-drivers',
@@ -18,6 +19,11 @@ export class DriversComponent {
       cell: (item: Driver) => `${item.familyName},${item.givenName}`,
     },
     {
+      columnDef: 'code',
+      header: 'Code',
+      cell: (item: Driver) => `${item.code}`,
+    },
+    {
       columnDef: 'permanentNumber',
       header: 'Permanent Number',
       cell: (item: Driver) => `${item.permanentNumber}`,
@@ -29,7 +35,7 @@ export class DriversComponent {
     },
     {
       columnDef: 'nationality',
-      header: 'nationality',
+      header: 'Nationality',
       cell: (item: Driver) => `${item.nationality}`,
     }
 ];
@@ -58,11 +64,7 @@ vm$ = combineLatest([
 
   constructor(private store: Store) { }
 
-  handlePageSizeChange(newPageSize: number) {
-    this.store.dispatch(DriverActions.pageSizeChanged({newPageSize}));
-  }
-
-  handlePageMoved(direction: number) {
-    this.store.dispatch(DriverActions.navigatePage({direction}));
+  handlePageSizeChangedOrMoved(pageOptions: PageEvent) {
+    this.store.dispatch(DriverActions.pageSizeChangedOrPageMoved({pageOptions}))
   }
 }

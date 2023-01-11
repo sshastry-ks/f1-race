@@ -28,20 +28,16 @@ const reducer = createReducer(
         }
     }),
 
-    on(RaceQualifyingActions.pageSizeChanged, (state: RaceQualifyingListState, {newPageSize}) => {
-        return {
-            ...state,
-            limit: newPageSize,
-            offset: initalRaceQualifyingListState.offset
+    on(
+        RaceQualifyingActions.pageSizeChangedOrPageMoved,
+        (state: RaceQualifyingListState, {pageOptions}) => {
+            return adapter.removeAll({
+                ...state,
+                limit: pageOptions.pageSize,
+                offset: pageOptions.pageIndex
+            })
         }
-    }),
-
-    on(RaceQualifyingActions.navigatePage, (state: RaceQualifyingListState, {direction}) => {
-        return {
-            ...state,
-            offset: state.offset + direction
-        }
-    })
+    )
 )
 
 export function RaceQualifyingListReducer(state: RaceQualifyingListState | undefined, action: Action) {

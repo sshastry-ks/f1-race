@@ -1,6 +1,3 @@
-import { InjectionToken } from "@angular/core";
-import { Observable } from "rxjs";
-
 export enum RequestState {
     INIT='init',
     LOADING='loading',
@@ -117,25 +114,11 @@ export interface Race {
 
 }
 
-export const LIST_HEADER_DATA_SERVICE = new InjectionToken<string>('ListHeaderDataService')
-
-export interface ListHeaderDataFacade {
-    dispatchMovePageAction: (direction: number) => void;
-    dispatchPageSizeChangedAction: (newPageSize: number) => void;
-    getViewModel$: () => Observable<{
-        totalPages: number;
-        currentPage: number;
-        currentPageSize: number;
-        pageSizeOptions: number[]
-    }>;
-}
-
-export const TABLE_DATA_CONNECTOR_SERVICE = new InjectionToken<string>('TableDataConnectorService');
-
 export interface ColDef {
     columnDef: string;
     header: string;
     cell: (item: any) => string;
+    cellTitle?: string;
 }
 
 export interface TableViewModel {
@@ -145,14 +128,4 @@ export interface TableViewModel {
     currentPage: number;
     pageSizeOptions: number[];
     isLoading: boolean;
-}
-
-export interface TableDataConnectorServiceFacade {
-    dispatchLoadDataAction: () => void;
-    dispatchMovePageAction: (direction: number) => void;
-    dispatchPageSizeChangedAction: (newPageSize: number) => void;
-    getTableColumnDef: () => ColDef[];
-    getDisplayedColumns: () => Array<string>;
-    getViewModel$: () => Observable<TableViewModel>;
-    rowSelected?: (row: any) => void;
 }

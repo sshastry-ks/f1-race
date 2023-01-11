@@ -32,7 +32,7 @@ export class RaceDetailsEffects {
                 return this.raceDetailsService.getRacesDetails(season, raceId).pipe(
                     map((response: RacesListResponse) => {
                         const {MRData: { RaceTable: { Races: races}}} = response;
-                        console.log(response)
+
                         return RaceDetailActions.loadRaceEntitySuccess({race: races[0]})
                     })
                 )

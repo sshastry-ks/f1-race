@@ -28,20 +28,16 @@ const reducer = createReducer(
         }
     }),
 
-    on(RaceDriverStandingsListActions.pageSizeChanged, (state: RaceDriverStandingsListState, {newPageSize}) => {
-        return {
-            ...state,
-            limit: newPageSize,
-            offset: initalRaceDriverStandingsListState.offset
+    on(
+        RaceDriverStandingsListActions.pageSizeChangedOrPageMoved,
+        (state: RaceDriverStandingsListState, {pageOptions}) => {
+            return adapter.removeAll({
+                ...state,
+                limit: pageOptions.pageSize,
+                offset: pageOptions.pageIndex
+            })
         }
-    }),
-
-    on(RaceDriverStandingsListActions.navigatePage, (state: RaceDriverStandingsListState, {direction}) => {
-        return {
-            ...state,
-            offset: state.offset + direction
-        }
-    })
+    )
 )
 
 export function RaceDriverStandingsListReducer(state: RaceDriverStandingsListState | undefined, action: Action) {

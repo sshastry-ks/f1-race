@@ -17,8 +17,7 @@ export class RaceEffects {
     triggerLoadRaceList$ = createEffect(() => this.actions$.pipe(
         ofType(
             RaceActions.enterRaceList,
-            RaceActions.pageSizeChanged,
-            RaceActions.navigatePage,
+            RaceActions.pageSizeChangedOrPageMoved
         ),
         map((_) => RaceActions.loadRaceList())
     ));

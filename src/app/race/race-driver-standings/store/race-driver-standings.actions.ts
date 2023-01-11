@@ -1,3 +1,4 @@
+import { PageEvent } from "@angular/material/paginator";
 import { createAction, props } from "@ngrx/store";
 import { DriverStanding } from "src/app/models";
 
@@ -9,12 +10,9 @@ export const loadRaceDriverStandingsList = createAction(
     '[Race driver-standings Effects] Load race driver-standings list'
 );
 
-export const pageSizeChanged = createAction(
-    '[Race driver-standings List Page] Page size changed', props<{ newPageSize: number}>()
-);
-
-export const navigatePage = createAction(
-    '[Race driver-standings List Page] navigate page', props<{ direction: number}>()
+export const pageSizeChangedOrPageMoved = createAction(
+    '[Race driver-standings List Page] Page size changed or moved',
+    props<{ pageOptions: PageEvent}>()
 );
 
 // API actions

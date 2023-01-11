@@ -1,3 +1,4 @@
+import { PageEvent } from "@angular/material/paginator";
 import { createAction, props } from "@ngrx/store";
 import { RaceResult } from "src/app/models";
 
@@ -5,13 +6,11 @@ export const enterRaceResultsList = createAction('[Race Results List Page] Enter
 
 export const loadRaceResultsList = createAction('[Race Results Effects] Load race results list');
 
-export const pageSizeChanged = createAction(
-    '[Race Results List page] Page size changed', props<{ newPageSize: number}>()
+export const pageSizeChangedOrPageMoved = createAction(
+    '[Race Results List page] Page size changed or moved',
+    props<{ pageOptions: PageEvent}>()
 );
 
-export const navigatePage = createAction(
-    '[Race Results List page] navigate page', props<{ direction: number}>()
-);
 
 // API actions
 

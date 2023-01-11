@@ -4,6 +4,7 @@ import * as RaceResultActions from './store/race-results.actions';
 import * as RaceResultSelectors from './store/race-results.selectors';
 import { combineLatest, map } from 'rxjs';
 import { RaceResult } from 'src/app/models';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-race-results',
@@ -21,6 +22,11 @@ export class RaceResultsComponent {
       columnDef: 'driver',
       header: 'Driver',
       cell: (item: RaceResult) => `${item.Driver.driverId}`,
+    },
+    {
+      columnDef: 'permanentNumber',
+      header: 'Permanent Number',
+      cell: (item: RaceResult) => `${item.Driver.permanentNumber}`,
     },
     {
       columnDef: 'time',
@@ -71,11 +77,7 @@ export class RaceResultsComponent {
     this.store.dispatch(RaceResultActions.enterRaceResultsList());
   }
 
-  handlePageSizeChange(newPageSize: number) {
-    this.store.dispatch(RaceResultActions.pageSizeChanged({newPageSize}));
-  }
-
-  handlePageMoved(direction: number) {
-    this.store.dispatch(RaceResultActions.navigatePage({direction}));
+  handlePageSizeChangedOrMoved(pageOptions: PageEvent) {
+    this.store.dispatch(RaceResultActions.pageSizeChangedOrPageMoved({pageOptions}))
   }
 }

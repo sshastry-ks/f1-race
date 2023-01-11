@@ -5,6 +5,7 @@ import * as RaceActions from './store/race.actions';
 import { combineLatest, map } from 'rxjs'
 import { Race } from 'src/app/models';
 import { ActivatedRoute, Router } from '@angular/router';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-race-list',
@@ -68,12 +69,8 @@ export class RaceListComponent {
     this.store.dispatch(RaceActions.enterRaceList());
   }
 
-  handlePageSizeChange(newPageSize: number) {
-    this.store.dispatch(RaceActions.pageSizeChanged({newPageSize}));
-  }
-
-  handlePageMoved(direction: number) {
-    this.store.dispatch(RaceActions.navigatePage({direction}));
+  handlePageSizeChangedOrMoved(pageOptions: PageEvent) {
+    this.store.dispatch(RaceActions.pageSizeChangedOrPageMoved({pageOptions}))
   }
 
   handleRowSelection(row: Race) {

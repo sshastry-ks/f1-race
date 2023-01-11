@@ -28,20 +28,16 @@ const reducer = createReducer(
         }
     }),
 
-    on(DriverAtcions.pageSizeChanged, (state: DriverState, {newPageSize}) => {
-        return {
-            ...state,
-            limit: newPageSize,
-            offset: initalDriverState.offset
+    on(
+        DriverAtcions.pageSizeChangedOrPageMoved,
+        (state: DriverState, {pageOptions}) => {
+            return adapter.removeAll({
+                ...state,
+                limit: pageOptions.pageSize,
+                offset: pageOptions.pageIndex
+            })
         }
-    }),
-
-    on(DriverAtcions.navigatePage, (state: DriverState, {direction}) => {
-        return {
-            ...state,
-            offset: state.offset + direction
-        }
-    }),
+    ),
 
     on(DriverAtcions.resetPaginationParams, (state: DriverState) => {
         return adapter.removeAll({

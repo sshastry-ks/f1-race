@@ -21,8 +21,7 @@ export class RaceQualifyingListEffects {
     triggerLoadRaceQualifyingList$ = createEffect(() => this.actions$.pipe(
         ofType(
             RaceQualifyingListActions.enterRaceQualifyingList,
-            RaceQualifyingListActions.pageSizeChanged,
-            RaceQualifyingListActions.navigatePage,
+            RaceQualifyingListActions.pageSizeChangedOrPageMoved
         ),
         map((_) => RaceQualifyingListActions.loadRaceQualifyingList())
     ));

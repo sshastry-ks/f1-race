@@ -3,8 +3,7 @@
         [vm]="vm"
         [columns]="columns"
         [displayedColumns]="displayedColumns"
-        (pizeSizeChanged)="handlePageSizeChange($event)"
-        (pageMoved)="handlePageMoved($event)"
         (rowSelectionChanged)="handleRowSelection($event)"
+        (pageSizeChangedOrMoved)="handlePageSizeChangedOrMoved($event)"
     ></app-table>
 </ng-container>

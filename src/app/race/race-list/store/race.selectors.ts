@@ -65,7 +65,6 @@ export const selectActiveRaceEntity = createSelector(
     selectAllEntities,
     selectActiveRaceId,
     (entites, raceId) => {
-        console.log(entites)
         return entites[raceId]
     }
 );

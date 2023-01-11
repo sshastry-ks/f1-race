@@ -11,7 +11,6 @@ export interface RouterState {
 export class CustomSerializer implements RouterStateSerializer<RouterState> {
   serialize(routerState: RouterStateSnapshot): RouterState {
     let route = routerState.root;
-    //console.log(routerState)
 
     let allParams = {};
 

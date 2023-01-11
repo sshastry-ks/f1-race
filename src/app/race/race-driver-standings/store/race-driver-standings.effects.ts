@@ -22,8 +22,7 @@ export class RaceDriverStandingsListEffects {
     triggerLoadRaceDriverStandingsList$ = createEffect(() => this.actions$.pipe(
         ofType(
             RaceDriverStandingsListActions.enterRaceDriverStandingsList,
-            RaceDriverStandingsListActions.pageSizeChanged,
-            RaceDriverStandingsListActions.navigatePage,
+            RaceDriverStandingsListActions.pageSizeChangedOrPageMoved,
         ),
         map((_) => RaceDriverStandingsListActions.loadRaceDriverStandingsList())
     ));

@@ -28,20 +28,16 @@ const reducer = createReducer(
         }
     }),
 
-    on(RaceResultActions.pageSizeChanged, (state: RaceResultState, {newPageSize}) => {
-        return {
-            ...state,
-            limit: newPageSize,
-            offset: initalRaceResultState.offset
+    on(
+        RaceResultActions.pageSizeChangedOrPageMoved,
+        (state: RaceResultState, {pageOptions}) => {
+            return adapter.removeAll({
+                ...state,
+                limit: pageOptions.pageSize,
+                offset: pageOptions.pageIndex
+            })
         }
-    }),
-
-    on(RaceResultActions.navigatePage, (state: RaceResultState, {direction}) => {
-        return {
-            ...state,
-            offset: state.offset + direction
-        }
-    }),
+    )
 )
 
 export function RaceResultsReducer(state: RaceResultState | undefined, action: Action) {

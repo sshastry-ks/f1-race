@@ -22,8 +22,7 @@ export class DriverEffects {
     triggerLoadDriversList$ = createEffect(() => this.actions$.pipe(
         ofType(
             DriverActions.enterDriverList,
-            DriverActions.pageSizeChanged,
-            DriverActions.navigatePage,
+            DriverActions.pageSizeChangedOrPageMoved,
             DriverActions.resetPaginationParams
         ),
         map((_) => DriverActions.loadDriverList())

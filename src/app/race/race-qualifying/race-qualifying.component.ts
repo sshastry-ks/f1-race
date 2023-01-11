@@ -4,6 +4,7 @@ import * as RaceQualifyingListActions from './store/race-qualifying.actions';
 import { Store } from '@ngrx/store';
 import { combineLatest, map } from 'rxjs';
 import { RaceQualifying } from 'src/app/models';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-race-qualifying',
@@ -21,6 +22,11 @@ export class RaceQualifyingComponent {
       columnDef: 'driver',
       header: 'Driver',
       cell: (item: RaceQualifying) => `${item.Driver.driverId}`,
+    },
+    {
+      columnDef: 'permanentNumber',
+      header: 'Permanent Number',
+      cell: (item: RaceQualifying) => `${item.Driver.permanentNumber}`,
     },
     {
       columnDef: 'q1',
@@ -64,12 +70,8 @@ export class RaceQualifyingComponent {
   ngOnInit() {
     this.store.dispatch(RaceQualifyingListActions.enterRaceQualifyingList());
   }
-
-  handlePageSizeChange(newPageSize: number) {
-    this.store.dispatch(RaceQualifyingListActions.pageSizeChanged({newPageSize}));
-  }
-
-  handlePageMoved(direction: number) {
-    this.store.dispatch(RaceQualifyingListActions.navigatePage({direction}));
+  
+  handlePageSizeChangedOrMoved(pageOptions: PageEvent) {
+    this.store.dispatch(RaceQualifyingListActions.pageSizeChangedOrPageMoved({pageOptions}))
   }
 }

@@ -4,6 +4,7 @@ import * as RaceDriverStandingsListSelectors from './store/race-driver-standings
 import { Store } from '@ngrx/store';
 import { DriverStanding } from 'src/app/models';
 import { combineLatest, map } from 'rxjs';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-race-driver-standings',
@@ -21,6 +22,11 @@ export class RaceDriverStandingsComponent {
       columnDef: 'driver',
       header: 'Driver',
       cell: (item: DriverStanding) => `${item.Driver.driverId}`,
+    },
+    {
+      columnDef: 'permanentNumber',
+      header: 'Permanent Number',
+      cell: (item: DriverStanding) => `${item.Driver.permanentNumber}`,
     },
     {
       columnDef: 'points',
@@ -61,11 +67,7 @@ export class RaceDriverStandingsComponent {
     this.store.dispatch(RaceDriverStandingsListActions.enterRaceDriverStandingsList());
   }
 
-  handlePageSizeChange(newPageSize: number) {
-    this.store.dispatch(RaceDriverStandingsListActions.pageSizeChanged({newPageSize}));
-  }
-
-  handlePageMoved(direction: number) {
-    this.store.dispatch(RaceDriverStandingsListActions.navigatePage({direction}));
+  handlePageSizeChangedOrMoved(pageOptions: PageEvent) {
+    this.store.dispatch(RaceDriverStandingsListActions.pageSizeChangedOrPageMoved({pageOptions}))
   }
 }

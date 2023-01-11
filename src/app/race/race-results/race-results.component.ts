@@ -50,7 +50,7 @@ export class RaceResultsComponent {
     this.store.select(RaceResultSelectors.selectAllRaceResults),
     this.store.select(RaceResultSelectors.selectTotalRaceResults),
     this.store.select(RaceResultSelectors.selectCurrentPageSize),
-    this.store.select(RaceResultSelectors.selectCurrnetPage),
+    this.store.select(RaceResultSelectors.selectCurrentPage),
     this.store.select(RaceResultSelectors.selectPageSizeOptions),
     this.store.select(RaceResultSelectors.SelectIsLoadingRaceResultsList),
     ]).pipe(
@@ -68,7 +68,7 @@ export class RaceResultsComponent {
   constructor(private store: Store) { }
 
   ngOnInit() {
-    this.store.dispatch(RaceResultActions.enterRaceResultList());
+    this.store.dispatch(RaceResultActions.enterRaceResultsList());
   }
 
   handlePageSizeChange(newPageSize: number) {

@@ -43,7 +43,7 @@ export class RaceQualifyingComponent {
     this.store.select(RaceQualifyingListSelectors.selectAllRaceQulifyingRecords),
     this.store.select(RaceQualifyingListSelectors.selectTotalRaceResults),
     this.store.select(RaceQualifyingListSelectors.selectCurrentPageSize),
-    this.store.select(RaceQualifyingListSelectors.selectCurrnetPage),
+    this.store.select(RaceQualifyingListSelectors.selectCurrentPage),
     this.store.select(RaceQualifyingListSelectors.selectPageSizeOptions),
     this.store.select(RaceQualifyingListSelectors.SelectIsLoadingRaceQualifyingList),
     ]).pipe(

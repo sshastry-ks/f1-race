@@ -4,31 +4,31 @@ import { Store } from "@ngrx/store";
 import * as RaceResultActions from './race-results.actions';
 import * as RaceResultSelectors from './race-results.selectors';
 import * as SeasonSelectors from '../../../seasons/store/seasons.selectors';
-import * as SeasonActions from '../../../seasons/store/seasons.actions';
 import * as RaceListSelectors from '../../race-list/store/race.selectors'
 import { switchMap, map, filter } from "rxjs";
-import { RaceResultService } from "./race-results.service";
+import { RaceResultsService } from "./race-results.service";
 import { RacesResultsListResponse } from "src/app/models";
-import { routerRequestAction } from "@ngrx/router-store";
-
 
 @Injectable()
 export class RaceResultsEffects {
 
-    constructor(private actions$: Actions, private store: Store, private raceResultsService: RaceResultService) {}
+    constructor(
+        private actions$: Actions,
+        private store: Store,
+        private raceResultsService: RaceResultsService
+    ) {}
 
     triggerLoadRaceList$ = createEffect(() => this.actions$.pipe(
         ofType(
-            RaceResultActions.enterRaceResultList,
+            RaceResultActions.enterRaceResultsList,
             RaceResultActions.pageSizeChanged,
             RaceResultActions.navigatePage,
-            RaceResultActions.resetPaginationParams
         ),
-        map((_) => RaceResultActions.loadRaceResultList())
+        map((_) => RaceResultActions.loadRaceResultsList())
     ));
 
     loadDriverList$ = createEffect(() => this.actions$.pipe(
-        ofType(RaceResultActions.loadRaceResultList),
+        ofType(RaceResultActions.loadRaceResultsList),
         concatLatestFrom(_ => [
             this.store.select(SeasonSelectors.selectActiveSeason),
             this.store.select(RaceListSelectors.selectActiveRaceId),
@@ -38,39 +38,14 @@ export class RaceResultsEffects {
             return season && round;
         }),
         switchMap(([_, season, round, queryParams]) => {
-            return this.raceResultsService.getRaceResultsList(season, round, queryParams.offset * queryParams.limit, queryParams.limit).pipe(
+            return this.raceResultsService.getRaceResultsList(season, round, queryParams.offset, queryParams.limit).pipe(
                 map((response: RacesResultsListResponse) => {
                     const { MRData: { RaceTable: { Races: races}, total: totalItems}} = response;
                     
-                    return RaceResultActions.loadRaceResultListSuccess({ raceResults: races[0].Results, totalItems})
+                    return RaceResultActions.loadRaceResultsListSuccess({ raceResults: races[0].Results, totalItems})
                 })
                 //error handling
             )
         })
     ));
-
-    resetPaginationparams$ = createEffect(() => {
-        return this.actions$.pipe(
-            ofType(SeasonActions.seasonSelectionChanged),
-            map((_) => RaceResultActions.resetPaginationParams())
-        )
-    });
-
-    // triggerActiveRaceIdChanged$ = createEffect(() => {
-    //     return this.actions$.pipe(
-    //         ofType(routerRequestAction),
-    //         concatLatestFrom(() => this.store.select(RaceListSelectors.selectActiveRaceId)),
-    //         filter(([{payload: { event }}, activeRaceId]) => {
-    //             console.log(event.url.indexOf(activeRaceId) < 0)
-    //             if(event.url.indexOf(activeRaceId) < 0) {
-    //                 return true;
-    //             }
-
-    //             return false;
-    //         }),
-    //         map(() => {
-    //             return SeasonActions.seasonSelectionChanged();
-    //         })
-    //     )
-    // })
 }

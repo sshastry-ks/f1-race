@@ -41,14 +41,6 @@ const reducer = createReducer(
             ...state,
             offset: state.offset + direction
         }
-    }),
-
-    on(RaceDriverStandingsListActions.resetPaginationParams, (state: RaceDriverStandingsListState) => {
-        return adapter.removeAll({
-            ...state,
-            limit: initalRaceDriverStandingsListState.limit,
-            offset: initalRaceDriverStandingsListState.offset
-        })
     })
 )
 

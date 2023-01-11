@@ -24,7 +24,7 @@ export const selectCurrentPageSize = createSelector(
     (state: RaceDriverStandingsListState) => state.limit
 );
 
-export const selectCurrnetPage = createSelector(
+export const selectCurrentPage = createSelector(
     selectRaceDriverStandingsListFeature,
     (state: RaceDriverStandingsListState) => state.offset
 );
@@ -40,9 +40,10 @@ export const selectPageSizeOptions = createSelector(
     (state: RaceDriverStandingsListState) => state.pageSizeOptions
 );
 
-export const selectRaceDriverStandingsListQueryParams = createSelector(selectCurrnetPage, selectCurrentPageSize, (offset, limit) => {
+export const selectRaceDriverStandingsListQueryParams = createSelector(
+    selectCurrentPage, selectCurrentPageSize, (page, limit) => {
     return {
-        offset,
+        offset: page * limit,
         limit
     }
 })

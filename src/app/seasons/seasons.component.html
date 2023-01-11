@@ -1,13 +1,17 @@
 <section class="seasons">
     <div class="seasons-list">
-        <mat-chip-option
-            *ngFor="let season of seasons"
-            [selectable]="true"
-            [selected]="(selectedSeason$ | async) === season"
-            [routerLink]="['./', season]"
-        >
-            {{season}}
-        </mat-chip-option>
+        <mat-chip-listbox [multiple]="false">
+            <mat-chip-option
+                *ngFor="let season of seasons"
+                [selectable]="true"
+                [selected]="(selectedSeason$ | async) === season"
+                [routerLink]="['./', season]"
+                routerLinkActive="active"
+                [value]="season"
+            >
+                {{season}}
+            </mat-chip-option>
+        </mat-chip-listbox>
     </div>
 </section>
 

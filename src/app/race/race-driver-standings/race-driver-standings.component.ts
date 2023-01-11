@@ -40,7 +40,7 @@ export class RaceDriverStandingsComponent {
     this.store.select(RaceDriverStandingsListSelectors.selectAllRaceDriverStandingsRecords),
     this.store.select(RaceDriverStandingsListSelectors.selectTotalRaceDriverStandingsRecords),
     this.store.select(RaceDriverStandingsListSelectors.selectCurrentPageSize),
-    this.store.select(RaceDriverStandingsListSelectors.selectCurrnetPage),
+    this.store.select(RaceDriverStandingsListSelectors.selectCurrentPage),
     this.store.select(RaceDriverStandingsListSelectors.selectPageSizeOptions),
     this.store.select(RaceDriverStandingsListSelectors.SelectIsLoadingRaceDriverStandingsList),
     ]).pipe(

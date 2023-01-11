@@ -29,7 +29,9 @@
         <mat-list-item>
             <mat-icon matListItemIcon>pin_drop</mat-icon>
             <div matListItemTitle>Location</div>
-            <div matListItemLine>{{raceEntity?.Circuit?.Location?.locality + ', ' + raceEntity?.Circuit?.Location?.locality}}</div>
+            <div matListItemLine>
+                {{raceEntity?.Circuit?.Location?.locality + ', ' + raceEntity?.Circuit?.Location?.country}}
+            </div>
         </mat-list-item>
         <mat-divider></mat-divider>
       </mat-list>

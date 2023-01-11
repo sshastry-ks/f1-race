@@ -40,7 +40,8 @@ export const selectPageSizeOptions = createSelector(
     (state: DriverState) => state.pageSizeOptions
 );
 
-export const selectDriverListQueryParams = createSelector(selectCurrentPage, selectCurrentPageSize, (page, limit) => {
+export const selectDriverListQueryParams = createSelector(
+    selectCurrentPage, selectCurrentPageSize, (page, limit) => {
     return {
         offset: page * limit,
         limit

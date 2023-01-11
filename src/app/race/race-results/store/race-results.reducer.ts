@@ -6,14 +6,14 @@ import { RaceResultState, initalRaceResultState, adapter } from "./race-results.
 const reducer = createReducer(
     initalRaceResultState,
 
-    on(RaceResultActions.loadRaceResultList, (State: RaceResultState) => {
+    on(RaceResultActions.loadRaceResultsList, (State: RaceResultState) => {
         return {
             ...State,
             requestState: RequestState.LOADING
         }
     }),
 
-    on(RaceResultActions.loadRaceResultListSuccess, (State: RaceResultState, {raceResults, totalItems}) => {
+    on(RaceResultActions.loadRaceResultsListSuccess, (State: RaceResultState, {raceResults, totalItems}) => {
         return adapter.setAll(raceResults, {
             ...State, 
             totalItems,
@@ -21,7 +21,7 @@ const reducer = createReducer(
         })
     }),
 
-    on(RaceResultActions.loadRaceResultListFailure, (State: RaceResultState) => {
+    on(RaceResultActions.loadRaceResultsListFailure, (State: RaceResultState) => {
         return {
             ...State,
             requestState: RequestState.ERROR
@@ -42,14 +42,6 @@ const reducer = createReducer(
             offset: state.offset + direction
         }
     }),
-
-    on(RaceResultActions.resetPaginationParams, (state: RaceResultState) => {
-        return adapter.removeAll({
-            ...state,
-            limit: initalRaceResultState.limit,
-            offset: initalRaceResultState.offset
-        })
-    })
 )
 
 export function RaceResultsReducer(state: RaceResultState | undefined, action: Action) {

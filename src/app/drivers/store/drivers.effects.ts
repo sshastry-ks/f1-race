@@ -13,7 +13,11 @@ import { DriverListResponse } from "src/app/models";
 @Injectable()
 export class DriverEffects {
 
-    constructor(private actions$: Actions, private store: Store, private driverService: DriverService) {}
+    constructor(
+        private actions$: Actions,
+        private store: Store,
+        private driverService: DriverService
+    ) {}
 
     triggerLoadDriversList$ = createEffect(() => this.actions$.pipe(
         ofType(
@@ -38,7 +42,6 @@ export class DriverEffects {
             return this.driverService.getDriversList(season, queryParams.offset, queryParams.limit).pipe(
                 map((response: DriverListResponse) => {
                     const { MRData: { DriverTable: { Drivers: drivers}, total: totalItems}} = response;
-                    console.log(drivers, totalItems)
                     return DriverActions.loadDriverListSuccess({ drivers, totalItems})
                 })
                 //error handling

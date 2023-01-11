@@ -41,14 +41,6 @@ const reducer = createReducer(
             ...state,
             offset: state.offset + direction
         }
-    }),
-
-    on(RaceQualifyingActions.resetPaginationParams, (state: RaceQualifyingListState) => {
-        return adapter.removeAll({
-            ...state,
-            limit: initalRaceQualifyingListState.limit,
-            offset: initalRaceQualifyingListState.offset
-        })
     })
 )
 

@@ -2,17 +2,21 @@ import { createFeatureSelector, createSelector } from "@ngrx/store";
 import { RequestState } from "src/app/models";
 import { RaceQualifyingListState, adapter } from "./race-qualifying.state";
 
-const selectRaceQualifyingListFeature = createFeatureSelector<RaceQualifyingListState>('raceQualifyingList');
+const selectRaceQualifyingListFeature =
+    createFeatureSelector<RaceQualifyingListState>('raceQualifyingList');
 
 const {
     selectAll
 } = adapter.getSelectors();
 
 export const SelectIsLoadingRaceQualifyingList = createSelector(
-    selectRaceQualifyingListFeature, (state: RaceQualifyingListState) => state.requestState === RequestState.LOADING
+    selectRaceQualifyingListFeature,
+    (state: RaceQualifyingListState) => state.requestState === RequestState.LOADING
 );
 
-export const selectAllRaceQulifyingRecords = createSelector(selectRaceQualifyingListFeature, selectAll);
+export const selectAllRaceQulifyingRecords = createSelector(
+    selectRaceQualifyingListFeature, selectAll
+);
 
 export const selectTotalRaceResults = createSelector(
     selectRaceQualifyingListFeature,
@@ -24,7 +28,7 @@ export const selectCurrentPageSize = createSelector(
     (state: RaceQualifyingListState) => state.limit
 );
 
-export const selectCurrnetPage = createSelector(
+export const selectCurrentPage = createSelector(
     selectRaceQualifyingListFeature,
     (state: RaceQualifyingListState) => state.offset
 );
@@ -40,9 +44,12 @@ export const selectPageSizeOptions = createSelector(
     (state: RaceQualifyingListState) => state.pageSizeOptions
 );
 
-export const selectRaceQualifyingListQueryParams = createSelector(selectCurrnetPage, selectCurrentPageSize, (offset, limit) => {
-    return {
-        offset,
-        limit
+export const selectRaceQualifyingListQueryParams = createSelector(
+    selectCurrentPage, selectCurrentPageSize,
+    (page, limit) => {
+        return {
+            offset: page * limit,
+            limit
+        }
     }
-})
+)

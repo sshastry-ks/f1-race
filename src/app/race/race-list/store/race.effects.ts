@@ -19,7 +19,6 @@ export class RaceEffects {
             RaceActions.enterRaceList,
             RaceActions.pageSizeChanged,
             RaceActions.navigatePage,
-            RaceActions.resetPaginationParams
         ),
         map((_) => RaceActions.loadRaceList())
     ));
@@ -41,13 +40,4 @@ export class RaceEffects {
             )
         })
     ));
-
-    // resetPaginationparams$ = createEffect(() => {
-    //     return this.actions$.pipe(
-    //         ofType(SeasonActions.seasonSelectionChanged),
-    //         map((_) => RaceActions.resetPaginationParams())
-    //     )
-    // });
-
-
 }

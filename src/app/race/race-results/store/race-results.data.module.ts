@@ -3,7 +3,7 @@ import { EffectsModule } from "@ngrx/effects";
 import { StoreModule } from "@ngrx/store";
 import { RaceResultsEffects } from "./race-results.effects";
 import { RaceResultsReducer } from "./race-results.reducer";
-import { RaceResultService } from "./race-results.service";
+import { RaceResultsService } from "./race-results.service";
 
 @NgModule({
     imports: [
@@ -11,7 +11,7 @@ import { RaceResultService } from "./race-results.service";
         EffectsModule.forFeature([RaceResultsEffects])
     ],
     providers: [
-        RaceResultService
+        RaceResultsService
     ]
 })
 export class RaceResultsDataModule {}

@@ -4,29 +4,30 @@ import { Store } from "@ngrx/store";
 import * as RaceQualifyingListActions from './race-qualifying.actions';
 import * as RaceQualifyingListSelectors from './race-qualifying.selectors';
 import * as SeasonSelectors from '../../../seasons/store/seasons.selectors';
-import * as SeasonActions from '../../../seasons/store/seasons.actions';
 import * as RaceListSelectors from '../../race-list/store/race.selectors'
 import { switchMap, map } from "rxjs";
 import { RaceQualifyingListService } from "./race-qualifying.service";
 import { RacesQualifyingListResponse } from "src/app/models";
 
-
 @Injectable()
 export class RaceQualifyingListEffects {
 
-    constructor(private actions$: Actions, private store: Store, private raceQualifyingListService: RaceQualifyingListService) {}
+    constructor(
+        private actions$: Actions,
+        private store: Store,
+        private raceQualifyingListService: RaceQualifyingListService
+    ) {}
 
-    triggerLoadRaceList$ = createEffect(() => this.actions$.pipe(
+    triggerLoadRaceQualifyingList$ = createEffect(() => this.actions$.pipe(
         ofType(
             RaceQualifyingListActions.enterRaceQualifyingList,
             RaceQualifyingListActions.pageSizeChanged,
             RaceQualifyingListActions.navigatePage,
-            RaceQualifyingListActions.resetPaginationParams
         ),
         map((_) => RaceQualifyingListActions.loadRaceQualifyingList())
     ));
 
-    loadDriverList$ = createEffect(() => this.actions$.pipe(
+    loadRaceQualifyingList$ = createEffect(() => this.actions$.pipe(
         ofType(RaceQualifyingListActions.loadRaceQualifyingList),
         concatLatestFrom(_ => [
             this.store.select(SeasonSelectors.selectActiveSeason),
@@ -35,23 +36,18 @@ export class RaceQualifyingListEffects {
         ]),
         switchMap(([_, season, round, queryParams]) => {
 
-            return this.raceQualifyingListService.getRaceQualifyingListList(season, round, queryParams.offset * queryParams.limit, queryParams.limit).pipe(
-                map((response: RacesQualifyingListResponse) => {
-                    const { MRData: { RaceTable: { Races: races}, total: totalItems}} = response;
-                    
-                    return RaceQualifyingListActions.loadRaceQualifyingListSuccess({ raceQualifyingList: races[0].QualifyingResults, totalItems})
-                })
-                //error handling
-            )
+            return this.raceQualifyingListService
+                .getRaceQualifyingListList(season, round, queryParams.offset, queryParams.limit)
+                .pipe(
+                    map((response: RacesQualifyingListResponse) => {
+                        const { MRData: { RaceTable: { Races: races}, total: totalItems}} = response;
+                        
+                        return RaceQualifyingListActions.loadRaceQualifyingListSuccess(
+                            { raceQualifyingList: races[0].QualifyingResults, totalItems}
+                        )
+                    })
+                    //error handling
+                );
         })
     ));
-
-    // resetPaginationparams$ = createEffect(() => {
-    //     return this.actions$.pipe(
-    //         ofType(SeasonActions.seasonSelectionChanged),
-    //         map((_) => RaceQualifyingListActions.resetPaginationParams())
-    //     )
-    // });
-
-
 }

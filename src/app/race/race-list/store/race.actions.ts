@@ -1,26 +1,19 @@
 import { createAction, props } from "@ngrx/store";
 import { Race } from "src/app/models";
 
-export const enterRaceList = createAction('[Race List] Enter race list');
+export const enterRaceList = createAction('[Race List Page] Enter race list page');
 
 export const loadRaceList = createAction('[Race Effects] Load race list');
 
 export const pageSizeChanged = createAction(
-    '[Race List] Page size changed', props<{ newPageSize: number}>()
+    '[Race List Page] Page size changed', props<{ newPageSize: number}>()
 );
 
 export const navigatePage = createAction(
-    '[Race List] navigate page', props<{ direction: number}>()
-);
-
-export const resetPaginationParams = createAction('[Race Effects] Reset pagination parameters');
-
-export const updateSelectedRace = createAction(
-    '[Race List] Update selected race', props<{ selectedRaceId: string}>()
+    '[Race List Page] navigate page', props<{ direction: number}>()
 );
 
 // API actions
-
 export const loadRaceListSuccess = createAction(
     '[Race Effects] Load race list success',
     props<{races: Race[], totalItems: number}>()

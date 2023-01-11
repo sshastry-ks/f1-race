@@ -6,14 +6,14 @@ import { RequestState } from "src/app/models";
 const reducer = createReducer(
     initalDriverState,
 
-    on(DriverAtcions.loadDriversList, (State: DriverState) => {
+    on(DriverAtcions.loadDriverList, (State: DriverState) => {
         return {
             ...State,
             requestState: RequestState.LOADING
         }
     }),
 
-    on(DriverAtcions.loadDriversListSuccess, (State: DriverState, {drivers, totalItems}) => {
+    on(DriverAtcions.loadDriverListSuccess, (State: DriverState, {drivers, totalItems}) => {
         return adapter.setAll(drivers, {
             ...State, 
             totalItems,
@@ -21,7 +21,7 @@ const reducer = createReducer(
         })
     }),
 
-    on(DriverAtcions.loadDriversListFailure, (State: DriverState) => {
+    on(DriverAtcions.loadDriverListFailure, (State: DriverState) => {
         return {
             ...State,
             requestState: RequestState.ERROR

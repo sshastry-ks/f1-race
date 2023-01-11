@@ -29,7 +29,7 @@ export class RaceDriverStandingsListEffects {
     loadDriverList$ = createEffect(() => this.actions$.pipe(
         ofType(RaceDriverStandingsListActions.loadRaceDriverStandingsList),
         concatLatestFrom(_ => [
-            this.store.select(SeasonSelectors.selectCurrentSeason),
+            this.store.select(SeasonSelectors.selectActiveSeason),
             this.store.select(RaceListSelectors.selectActiveRaceId),
             this.store.select(RaceDriverStandingsSelectors.selectRaceDriverStandingsListQueryParams)
         ]),
@@ -45,12 +45,12 @@ export class RaceDriverStandingsListEffects {
         })
     ));
 
-    resetPaginationparams$ = createEffect(() => {
-        return this.actions$.pipe(
-            ofType(SeasonActions.seasonSelectionChanged),
-            map((_) => RaceDriverStandingsListActions.resetPaginationParams())
-        )
-    });
+    // resetPaginationparams$ = createEffect(() => {
+    //     return this.actions$.pipe(
+    //         ofType(SeasonActions.seasonSelectionChanged),
+    //         map((_) => RaceDriverStandingsListActions.resetPaginationParams())
+    //     )
+    // });
 
 
 }

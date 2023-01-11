@@ -2,31 +2,30 @@ import { createFeatureSelector, createSelector } from "@ngrx/store";
 import { RequestState } from "src/app/models";
 import { adapter, DriverState } from "./drivers.state";
 
-
-const selectDriverFeature = createFeatureSelector<DriverState>('drivers');
+const selectDriverListFeature = createFeatureSelector<DriverState>('driverList');
 
 const {
     selectAll
 } = adapter.getSelectors();
 
 export const SelectIsLoadingDriverList = createSelector(
-    selectDriverFeature, (state: DriverState) => state.requestState === RequestState.LOADING
+    selectDriverListFeature, (state: DriverState) => state.requestState === RequestState.LOADING
 );
 
-export const selectAllDrivers = createSelector(selectDriverFeature, selectAll);
+export const selectAllDrivers = createSelector(selectDriverListFeature, selectAll);
 
 export const selectTotalDrivers = createSelector(
-    selectDriverFeature,
+    selectDriverListFeature,
     (state: DriverState) => state.totalItems
 );
 
 export const selectCurrentPageSize = createSelector(
-    selectDriverFeature,
+    selectDriverListFeature,
     (state: DriverState) => state.limit
 );
 
-export const selectCurrnetPage = createSelector(
-    selectDriverFeature,
+export const selectCurrentPage = createSelector(
+    selectDriverListFeature,
     (state: DriverState) => state.offset
 );
 
@@ -37,13 +36,13 @@ export const selectTotalPages = createSelector(
 );
 
 export const selectPageSizeOptions = createSelector(
-    selectDriverFeature,
+    selectDriverListFeature,
     (state: DriverState) => state.pageSizeOptions
 );
 
-export const selectDriverQueryParams = createSelector(selectCurrnetPage, selectCurrentPageSize, (offset, limit) => {
+export const selectDriverListQueryParams = createSelector(selectCurrentPage, selectCurrentPageSize, (page, limit) => {
     return {
-        offset,
+        offset: page * limit,
         limit
     }
 })

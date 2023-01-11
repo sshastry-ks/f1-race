@@ -17,7 +17,7 @@ export interface Driver {
     nationality: string;
 }
 
-export interface DriversListResponse {
+export interface DriverListResponse {
     MRData: {
         DriverTable: {
             Drivers: Driver[]

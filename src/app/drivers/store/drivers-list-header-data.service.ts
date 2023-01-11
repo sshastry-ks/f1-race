@@ -6,7 +6,7 @@ import * as DriverSelectors from './drivers.selectors';
 import * as DriverActions from './drivers.actions';
 
 @Injectable()
-export class ListHeaderDataService implements ListHeaderDataFacade {
+export class DriversListHeaderDataService implements ListHeaderDataFacade {
     
     constructor(private store: Store) {}
     
@@ -25,7 +25,7 @@ export class ListHeaderDataService implements ListHeaderDataFacade {
     }> {
         return combineLatest([
             this.store.select(DriverSelectors.selectTotalPages),
-            this.store.select(DriverSelectors.selectCurrnetPage),
+            this.store.select(DriverSelectors.selectCurrentPage),
             this.store.select(DriverSelectors.selectCurrentPageSize),
             this.store.select(DriverSelectors.selectPageSizeOptions)
           ]).pipe(

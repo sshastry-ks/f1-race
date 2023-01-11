@@ -4,7 +4,6 @@ import { Store } from "@ngrx/store";
 import * as RaceActions from './race.actions';
 import * as RaceSelectors from './race.selectors';
 import * as SeasonSelectors from '../../../seasons/store/seasons.selectors';
-import * as SeasonActions from '../../../seasons/store/seasons.actions';
 import { switchMap, map } from "rxjs";
 import { RaceService } from "./race.service";
 import { RacesListResponse } from "src/app/models";
@@ -28,12 +27,12 @@ export class RaceEffects {
     loadDriverList$ = createEffect(() => this.actions$.pipe(
         ofType(RaceActions.loadRaceList),
         concatLatestFrom(_ => [
-            this.store.select(SeasonSelectors.selectCurrentSeason),
-            this.store.select(RaceSelectors.selectRaceQueryParams)
+            this.store.select(SeasonSelectors.selectActiveSeason),
+            this.store.select(RaceSelectors.selectRaceListQueryParams)
         ]),
         switchMap(([_, season, queryParams]) => {
 
-            return this.raceService.getRacesList(season, queryParams.offset * queryParams.limit, queryParams.limit).pipe(
+            return this.raceService.getRacesList(season, queryParams.offset, queryParams.limit).pipe(
                 map((response: RacesListResponse) => {
                     const { MRData: { RaceTable: { Races: races}, total: totalItems}} = response;
                     return RaceActions.loadRaceListSuccess({ races, totalItems})
@@ -43,12 +42,12 @@ export class RaceEffects {
         })
     ));
 
-    resetPaginationparams$ = createEffect(() => {
-        return this.actions$.pipe(
-            ofType(SeasonActions.seasonSelectionChanged),
-            map((_) => RaceActions.resetPaginationParams())
-        )
-    });
+    // resetPaginationparams$ = createEffect(() => {
+    //     return this.actions$.pipe(
+    //         ofType(SeasonActions.seasonSelectionChanged),
+    //         map((_) => RaceActions.resetPaginationParams())
+    //     )
+    // });
 
 
 }

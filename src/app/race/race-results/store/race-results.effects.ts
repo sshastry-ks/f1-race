@@ -30,7 +30,7 @@ export class RaceResultsEffects {
     loadDriverList$ = createEffect(() => this.actions$.pipe(
         ofType(RaceResultActions.loadRaceResultList),
         concatLatestFrom(_ => [
-            this.store.select(SeasonSelectors.selectCurrentSeason),
+            this.store.select(SeasonSelectors.selectActiveSeason),
             this.store.select(RaceListSelectors.selectActiveRaceId),
             this.store.select(RaceResultSelectors.selectRaceResultsQueryParams)
         ]),
@@ -56,21 +56,21 @@ export class RaceResultsEffects {
         )
     });
 
-    triggerActiveRaceIdChanged$ = createEffect(() => {
-        return this.actions$.pipe(
-            ofType(routerRequestAction),
-            concatLatestFrom(() => this.store.select(RaceListSelectors.selectActiveRaceId)),
-            filter(([{payload: { event }}, activeRaceId]) => {
-                console.log(event.url.indexOf(activeRaceId) < 0)
-                if(event.url.indexOf(activeRaceId) < 0) {
-                    return true;
-                }
+    // triggerActiveRaceIdChanged$ = createEffect(() => {
+    //     return this.actions$.pipe(
+    //         ofType(routerRequestAction),
+    //         concatLatestFrom(() => this.store.select(RaceListSelectors.selectActiveRaceId)),
+    //         filter(([{payload: { event }}, activeRaceId]) => {
+    //             console.log(event.url.indexOf(activeRaceId) < 0)
+    //             if(event.url.indexOf(activeRaceId) < 0) {
+    //                 return true;
+    //             }
 
-                return false;
-            }),
-            map(() => {
-                return SeasonActions.seasonSelectionChanged();
-            })
-        )
-    })
+    //             return false;
+    //         }),
+    //         map(() => {
+    //             return SeasonActions.seasonSelectionChanged();
+    //         })
+    //     )
+    // })
 }

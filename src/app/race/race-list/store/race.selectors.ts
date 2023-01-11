@@ -1,35 +1,34 @@
 import { createFeatureSelector, createSelector } from "@ngrx/store";
 import { RequestState } from "src/app/models";
-import { adapter, RaceState } from "./race.state";
-import { getSelectors, RouterReducerState } from '@ngrx/router-store';
+import { adapter, RaceListState } from "./race.state";
 import * as AppSelectors from '../../../store/app.selectors';
 import { RouterState } from "src/app/store/app-route-serializer";
 
-const selectRaceFeature = createFeatureSelector<RaceState>('races');
+const selectRaceListFeature = createFeatureSelector<RaceListState>('racesList');
 
 const {
     selectAll
 } = adapter.getSelectors();
 
-export const SelectIsLoadingDriverList = createSelector(
-    selectRaceFeature, (state: RaceState) => state.requestState === RequestState.LOADING
+export const SelectIsLoadingRaceList = createSelector(
+    selectRaceListFeature, (state: RaceListState) => state.requestState === RequestState.LOADING
 );
 
-export const selectAllRaces = createSelector(selectRaceFeature, selectAll);
+export const selectAllRaces = createSelector(selectRaceListFeature, selectAll);
 
 export const selectTotalRaces = createSelector(
-    selectRaceFeature,
-    (state: RaceState) => state.totalItems
+    selectRaceListFeature,
+    (state: RaceListState) => state.totalItems
 );
 
 export const selectCurrentPageSize = createSelector(
-    selectRaceFeature,
-    (state: RaceState) => state.limit
+    selectRaceListFeature,
+    (state: RaceListState) => state.limit
 );
 
 export const selectCurrnetPage = createSelector(
-    selectRaceFeature,
-    (state: RaceState) => state.offset
+    selectRaceListFeature,
+    (state: RaceListState) => state.offset
 );
 
 export const selectTotalPages = createSelector(
@@ -39,13 +38,13 @@ export const selectTotalPages = createSelector(
 );
 
 export const selectPageSizeOptions = createSelector(
-    selectRaceFeature,
-    (state: RaceState) => state.pageSizeOptions
+    selectRaceListFeature,
+    (state: RaceListState) => state.pageSizeOptions
 );
 
-export const selectRaceQueryParams = createSelector(selectCurrnetPage, selectCurrentPageSize, (offset, limit) => {
+export const selectRaceListQueryParams = createSelector(selectCurrnetPage, selectCurrentPageSize, (page, limit) => {
     return {
-        offset,
+        offset: page * limit,
         limit
     }
 });
@@ -55,6 +54,6 @@ export const selectActiveRaceId = createSelector(AppSelectors.selectRouterState,
     if(!routerstate || !routerstate.allParams) {
         return null;
     }
-    console.log(routerstate.allParams)
+
     return routerstate.allParams['raceId'] || '';
  })

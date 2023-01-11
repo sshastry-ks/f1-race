@@ -10,11 +10,9 @@ export class SeasonDetailsComponent {
     {
         label: 'Drivers',
         path: './drivers',
-        index: 0
     }, {
         label: 'Races',
         path: './races',
-        index: 1
     }
   ];
 }

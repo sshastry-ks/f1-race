@@ -3,13 +3,14 @@ import { CommonModule } from '@angular/common';
 import { DriverdataModule } from './store/drivers-data.module';
 import { MatCardModule } from '@angular/material/card';
 import { MatTabsModule } from '@angular/material/tabs';
-import {MatButtonToggleModule} from '@angular/material/button-toggle';
-import {MatButtonModule} from '@angular/material/button';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatButtonModule } from '@angular/material/button';
 import { DriversComponent } from './drivers.component';
 import { LIST_HEADER_DATA_SERVICE } from '../models';
-import { ListHeaderDataService } from './store/list-header-data.service';
-import { ListHeaderModule } from '../shared/list-header/list-header.module';
+import { DriversListHeaderDataService } from './store/drivers-list-header-data.service';
+
 import { RouterModule, Routes } from '@angular/router';
+import { ListHeaderModule } from '../shared/list-header/list-header.module';
 
 const routes: Routes = [
   {
@@ -17,7 +18,6 @@ const routes: Routes = [
     component: DriversComponent
   }
 ]
-
 
 @NgModule({
   declarations: [DriversComponent],
@@ -37,7 +37,7 @@ const routes: Routes = [
   providers: [
     {
       provide: LIST_HEADER_DATA_SERVICE,
-      useClass: ListHeaderDataService
+      useClass: DriversListHeaderDataService
     }
   ]
 })

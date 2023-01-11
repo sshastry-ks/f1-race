@@ -7,7 +7,7 @@ import * as SeasonSelectors from '../../seasons/store/seasons.selectors';
 import * as SeasonActions from '../../seasons/store/seasons.actions';
 import { switchMap, map, filter } from "rxjs";
 import { DriverService } from "./drivers.service";
-import { DriversListResponse } from "src/app/models";
+import { DriverListResponse } from "src/app/models";
 
 
 @Injectable()
@@ -22,24 +22,24 @@ export class DriverEffects {
             DriverActions.navigatePage,
             DriverActions.resetPaginationParams
         ),
-        map((_) => DriverActions.loadDriversList())
+        map((_) => DriverActions.loadDriverList())
     ));
 
     loadDriverList$ = createEffect(() => this.actions$.pipe(
-        ofType(DriverActions.loadDriversList),
+        ofType(DriverActions.loadDriverList),
         concatLatestFrom(_ => [
-            this.store.select(SeasonSelectors.selectCurrentSeason),
-            this.store.select(DriverSelectors.selectDriverQueryParams)
+            this.store.select(SeasonSelectors.selectActiveSeason),
+            this.store.select(DriverSelectors.selectDriverListQueryParams)
         ]),
         filter(([_, season, _queryParams]) => {
             return season
         }),
         switchMap(([_, season, queryParams]) => {
-            return this.driverService.getDriversList(season, queryParams.offset * queryParams.limit, queryParams.limit).pipe(
-                map((response: DriversListResponse) => {
+            return this.driverService.getDriversList(season, queryParams.offset, queryParams.limit).pipe(
+                map((response: DriverListResponse) => {
                     const { MRData: { DriverTable: { Drivers: drivers}, total: totalItems}} = response;
                     console.log(drivers, totalItems)
-                    return DriverActions.loadDriversListSuccess({ drivers, totalItems})
+                    return DriverActions.loadDriverListSuccess({ drivers, totalItems})
                 })
                 //error handling
             )

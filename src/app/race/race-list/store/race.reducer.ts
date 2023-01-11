@@ -1,19 +1,19 @@
 import { Action, createReducer, on } from "@ngrx/store";
-import { adapter, initalRaceState, RaceState } from "./race.state";
+import { adapter, initalRaceListState, RaceListState } from "./race.state";
 import * as RaceActions from './race.actions';
 import { RequestState } from "src/app/models";
 
 const reducer = createReducer(
-    initalRaceState,
+    initalRaceListState,
 
-    on(RaceActions.loadRaceList, (State: RaceState) => {
+    on(RaceActions.loadRaceList, (State: RaceListState) => {
         return {
             ...State,
             requestState: RequestState.LOADING
         }
     }),
 
-    on(RaceActions.loadRaceListSuccess, (State: RaceState, {races, totalItems}) => {
+    on(RaceActions.loadRaceListSuccess, (State: RaceListState, {races, totalItems}) => {
         return adapter.setAll(races, {
             ...State, 
             totalItems,
@@ -21,37 +21,37 @@ const reducer = createReducer(
         })
     }),
 
-    on(RaceActions.loadRaceListFailure, (State: RaceState) => {
+    on(RaceActions.loadRaceListFailure, (State: RaceListState) => {
         return {
             ...State,
             requestState: RequestState.ERROR
         }
     }),
 
-    on(RaceActions.pageSizeChanged, (state: RaceState, {newPageSize}) => {
+    on(RaceActions.pageSizeChanged, (state: RaceListState, {newPageSize}) => {
         return {
             ...state,
             limit: newPageSize,
-            offset: initalRaceState.offset
+            offset: initalRaceListState.offset
         }
     }),
 
-    on(RaceActions.navigatePage, (state: RaceState, {direction}) => {
+    on(RaceActions.navigatePage, (state: RaceListState, {direction}) => {
         return {
             ...state,
             offset: state.offset + direction
         }
     }),
 
-    on(RaceActions.resetPaginationParams, (state: RaceState) => {
+    on(RaceActions.resetPaginationParams, (state: RaceListState) => {
         return adapter.removeAll({
             ...state,
-            limit: initalRaceState.limit,
-            offset: initalRaceState.offset
+            limit: initalRaceListState.limit,
+            offset: initalRaceListState.offset
         })
     }),
 
-    on(RaceActions.updateSelectedRace, (state: RaceState, {selectedRaceId}) => {
+    on(RaceActions.updateSelectedRace, (state: RaceListState, {selectedRaceId}) => {
         return {
             ...state,
             selectedRaceId
@@ -59,6 +59,6 @@ const reducer = createReducer(
     })
 )
 
-export function RaceReducer(state: RaceState | undefined, action: Action) {
+export function RaceListReducer(state: RaceListState | undefined, action: Action) {
     return reducer(state, action)
 }

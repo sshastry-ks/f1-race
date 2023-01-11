@@ -29,7 +29,7 @@ export class RaceQualifyingListEffects {
     loadDriverList$ = createEffect(() => this.actions$.pipe(
         ofType(RaceQualifyingListActions.loadRaceQualifyingList),
         concatLatestFrom(_ => [
-            this.store.select(SeasonSelectors.selectCurrentSeason),
+            this.store.select(SeasonSelectors.selectActiveSeason),
             this.store.select(RaceListSelectors.selectActiveRaceId),
             this.store.select(RaceQualifyingListSelectors.selectRaceQualifyingListQueryParams)
         ]),
@@ -46,12 +46,12 @@ export class RaceQualifyingListEffects {
         })
     ));
 
-    resetPaginationparams$ = createEffect(() => {
-        return this.actions$.pipe(
-            ofType(SeasonActions.seasonSelectionChanged),
-            map((_) => RaceQualifyingListActions.resetPaginationParams())
-        )
-    });
+    // resetPaginationparams$ = createEffect(() => {
+    //     return this.actions$.pipe(
+    //         ofType(SeasonActions.seasonSelectionChanged),
+    //         map((_) => RaceQualifyingListActions.resetPaginationParams())
+    //     )
+    // });
 
 
 }

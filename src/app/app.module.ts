@@ -8,7 +8,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { Test } from './test-service';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-import { NavigationActionTiming, StoreRouterConnectingModule } from '@ngrx/router-store';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { CustomSerializer } from './store/app-route-serializer';
 import { reducers } from './store/app.reducer';
 import {MatToolbarModule} from '@angular/material/toolbar';

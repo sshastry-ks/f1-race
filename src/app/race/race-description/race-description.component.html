@@ -1,0 +1,37 @@
+<section>
+    <mat-list>
+        <div mat-subheader>Race Details</div>
+        <mat-list-item>
+          <mat-icon matListItemIcon>sports_score</mat-icon>
+          <div matListItemTitle>Season</div>
+          <div matListItemLine>{{raceEntity?.season}}</div>
+        </mat-list-item>
+        <mat-list-item>
+            <mat-icon matListItemIcon>360</mat-icon>
+            <div matListItemTitle>Round</div>
+            <div matListItemLine>{{raceEntity?.round}}</div>
+        </mat-list-item>
+        <mat-list-item>
+            <mat-icon matListItemIcon>route</mat-icon>
+            <div matListItemTitle>Race Name</div>
+            <div matListItemLine>{{raceEntity?.raceName}}</div>
+        </mat-list-item>
+        <mat-list-item>
+            <mat-icon matListItemIcon>calendar_month</mat-icon>
+            <div matListItemTitle>Date</div>
+            <div matListItemLine>{{raceEntity?.date}}</div>
+        </mat-list-item>
+        <mat-list-item>
+            <mat-icon matListItemIcon>access_time</mat-icon>
+            <div matListItemTitle>Time</div>
+            <div matListItemLine>{{raceEntity?.time}}</div>
+        </mat-list-item>
+        <mat-list-item>
+            <mat-icon matListItemIcon>pin_drop</mat-icon>
+            <div matListItemTitle>Location</div>
+            <div matListItemLine>{{raceEntity?.Circuit?.Location?.locality + ', ' + raceEntity?.Circuit?.Location?.locality}}</div>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+      </mat-list>
+      
+</section>

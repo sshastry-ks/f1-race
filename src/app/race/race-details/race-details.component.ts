@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { Store } from '@ngrx/store';
+import * as RaceDetailsSelectors from './store/race-details.selectors';
+import * as RaceDetailsActions from './store/race-details.actions';
 
 @Component({
   selector: 'app-race-details',
@@ -21,5 +24,11 @@ export class RaceDetailsComponent {
     }
   ];
 
+  raceEntity$ = this.store.select(RaceDetailsSelectors.selectActiveRaceEntity);
   
+  constructor(private store: Store) {}
+
+  ngOnInit() {
+    this.store.dispatch(RaceDetailsActions.loadRaceEntity())
+  }
 }

@@ -7,7 +7,6 @@ const selectRouterReducerState = createFeatureSelector<RouterReducerState<Router
 export const selectRouterState = createSelector(
     selectRouterReducerState,
     (routerReducerState: RouterReducerState<RouterState>) => {
-        
         if(!routerReducerState || !routerReducerState.state) {
             return null;
         }

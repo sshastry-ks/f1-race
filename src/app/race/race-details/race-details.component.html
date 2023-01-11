@@ -27,7 +27,9 @@
 
 
 <section class="race-details">
-    <div class="race-details-info">Info content</div>
+    <div class="race-details-info">
+        <app-race-description [raceEntity]="raceEntity$ | async"></app-race-description>
+    </div>
     <div class="race-details-scoreboard mat-elevation-z2">
           <nav mat-tab-nav-bar [tabPanel]="tabPanel">
             <a mat-tab-link

@@ -4,6 +4,8 @@ import { RaceDetailsComponent } from './race-details.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { RouterModule, Routes } from '@angular/router';
 import {MatTabsModule} from '@angular/material/tabs';
+import { RaceDescriptionModule } from '../race-description/race-description.module';
+import { RaceDetailsDataModule } from './store/race-details.data.module';
 
 const routes:Routes = [
   {
@@ -39,6 +41,8 @@ const routes:Routes = [
     CommonModule,
     MatSidenavModule,
     MatTabsModule,
+    RaceDescriptionModule,
+    RaceDetailsDataModule,
     RouterModule.forChild(routes)
   ]
 })

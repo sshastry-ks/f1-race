@@ -4,10 +4,11 @@ import { adapter, RaceListState } from "./race.state";
 import * as AppSelectors from '../../../store/app.selectors';
 import { RouterState } from "src/app/store/app-route-serializer";
 
-const selectRaceListFeature = createFeatureSelector<RaceListState>('racesList');
+export const selectRaceListFeature = createFeatureSelector<RaceListState>('racesList');
 
 const {
-    selectAll
+    selectAll,
+    selectEntities
 } = adapter.getSelectors();
 
 export const SelectIsLoadingRaceList = createSelector(
@@ -15,6 +16,8 @@ export const SelectIsLoadingRaceList = createSelector(
 );
 
 export const selectAllRaces = createSelector(selectRaceListFeature, selectAll);
+
+export const selectAllEntities = createSelector(selectRaceListFeature, selectEntities);
 
 export const selectTotalRaces = createSelector(
     selectRaceListFeature,
@@ -57,3 +60,12 @@ export const selectActiveRaceId = createSelector(AppSelectors.selectRouterState,
 
     return routerstate.allParams['raceId'] || '';
  })
+
+export const selectActiveRaceEntity = createSelector(
+    selectAllEntities,
+    selectActiveRaceId,
+    (entites, raceId) => {
+        console.log(entites)
+        return entites[raceId]
+    }
+);

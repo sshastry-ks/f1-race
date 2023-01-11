@@ -1,7 +1,16 @@
 <section class="seasons">
-    <mat-card *ngFor="let season of seasons" [routerLink]="['./', season]">
-        <mat-card-content>{{ 'Season ' + season}}</mat-card-content>
-    </mat-card>
+    <div class="seasons-list">
+        <mat-chip-option
+            *ngFor="let season of seasons"
+            [selectable]="true"
+            [selected]="(selectedSeason$ | async) === season"
+            [routerLink]="['./', season]"
+        >
+            {{season}}
+        </mat-chip-option>
+    </div>
 </section>
+
+<mat-divider></mat-divider>
 
 <router-outlet></router-outlet>

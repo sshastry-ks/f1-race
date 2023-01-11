@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { SeasonDetailsComponent } from './season-details.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { RouterModule, Routes } from '@angular/router';
+import {MatDividerModule} from '@angular/material/divider';
 
 const routes: Routes = [ 
   {
@@ -37,6 +38,7 @@ const routes: Routes = [
   imports: [
     CommonModule,
     MatTabsModule,
+    MatDividerModule,
     RouterModule.forChild(routes)
   ]
 })

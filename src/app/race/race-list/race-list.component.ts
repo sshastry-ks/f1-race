@@ -2,8 +2,9 @@ import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import * as RaceSelectors from './store/race.selectors';
 import * as RaceActions from './store/race.actions';
-import { Router } from '@angular/router';
-import { tap } from 'rxjs/operators';
+import { combineLatest, map } from 'rxjs'
+import { Race } from 'src/app/models';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-race-list',
@@ -11,16 +12,73 @@ import { tap } from 'rxjs/operators';
   styleUrls: ['./race-list.component.scss']
 })
 export class RaceListComponent {
-  races$ = this.store.select(RaceSelectors.selectAllRaces);
+  constructor(private store: Store, private router: Router, private activatedRoute: ActivatedRoute) { }
 
-  constructor(private store: Store) { }
+  columns = [
+    {
+      columnDef: 'round',
+      header: 'Round',
+      cell: (item: Race) => `${item.round}`,
+    },
+    {
+      columnDef: 'raceName',
+      header: 'Race Name',
+      cell: (item: Race) => `${item.raceName}`,
+    },
+    {
+      columnDef: 'date',
+      header: 'Date',
+      cell: (item: Race) => `${item.date}`,
+    },
+    {
+      columnDef: 'location',
+      header: 'Location',
+      cell: (item: Race) => `${item.time}`,
+    },
+    {
+      columnDef: 'status',
+      header: 'Status',
+      cell: (item: Race) => `${item.Circuit.Location.locality}, ${item.Circuit.Location.country}`,
+    },
+  ];
+
+  displayedColumns = this.columns.map(c => c.columnDef);
+
+  vm$ = combineLatest([
+    this.store.select(RaceSelectors.selectAllRaces),
+    this.store.select(RaceSelectors.selectTotalRaces),
+    this.store.select(RaceSelectors.selectCurrentPageSize),
+    this.store.select(RaceSelectors.selectCurrnetPage),
+    this.store.select(RaceSelectors.selectPageSizeOptions),
+    this.store.select(RaceSelectors.SelectIsLoadingRaceList),
+    ]).pipe(
+    map(([items, totalItems, currentPageSize, currentPage, pageSizeOptions, isLoading]) => {
+        return {
+        items,
+        totalItems,
+        currentPageSize,
+        currentPage,
+        pageSizeOptions,
+        isLoading
+        }
+  }));
   
 
   ngOnInit() {
     this.store.dispatch(RaceActions.enterRaceList());
   }
 
-  updateSelectedRace(round: string) {
-    this.store.dispatch(RaceActions.updateSelectedRace({selectedRaceId: round}));
+  handlePageSizeChange(newPageSize: number) {
+    this.store.dispatch(RaceActions.pageSizeChanged({newPageSize}));
+  }
+
+  handlePageMoved(direction: number) {
+    this.store.dispatch(RaceActions.navigatePage({direction}));
+  }
+
+  handleRowSelection(row: Race) {
+    const {round} = row;
+
+    this.router.navigate(['../', 'races', round], {relativeTo: this.activatedRoute});
   }
 }

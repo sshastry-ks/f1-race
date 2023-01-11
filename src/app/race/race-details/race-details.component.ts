@@ -6,5 +6,20 @@ import { Component } from '@angular/core';
   styleUrls: ['./race-details.component.scss']
 })
 export class RaceDetailsComponent {
+  readonly navLinks = [
+    {
+      label: 'Results',
+      path: 'results'
+    },
+    {
+      label: 'Qualifying',
+      path: 'qualifying'
+    },
+    {
+      label: 'Driver Standings',
+      path: 'driver-standings'
+    }
+  ];
 
+  
 }

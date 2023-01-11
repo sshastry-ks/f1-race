@@ -1,12 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RaceDriverStandingsComponent } from './race-driver-standings.component';
-import { LIST_HEADER_DATA_SERVICE } from 'src/app/models';
-import { ListHeaderDataService } from './store/list-header-data.service';
-import { MatCardModule } from '@angular/material/card';
-import { ListHeaderModule } from 'src/app/shared/list-header/list-header.module';
 import { RaceDriverStandingsDataModule } from './store/race-driver-standings.data.module';
 import { RouterModule, Routes } from '@angular/router';
+import { TableModule } from 'src/app/shared/table/table.module';
 
 const routes: Routes = [
   {
@@ -15,23 +12,18 @@ const routes: Routes = [
   }
 ]
 
-
 @NgModule({
   declarations: [
     RaceDriverStandingsComponent
   ],
+  exports: [
+    RaceDriverStandingsComponent
+  ],
   imports: [
     CommonModule,
-    MatCardModule,
-    ListHeaderModule,
     RaceDriverStandingsDataModule,
+    TableModule,
     RouterModule.forChild(routes)
   ],
-  providers: [
-    {
-      provide: LIST_HEADER_DATA_SERVICE,
-      useClass: ListHeaderDataService
-    }
-  ]
 })
 export class RaceDriverStandingsModule { }

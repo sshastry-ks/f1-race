@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { throwToolbarMixedModesError } from '@angular/material/toolbar';
+import { Store } from '@ngrx/store';
+import * as SeasonSelectors from './store/seasons.selectors';
 
 @Component({
   selector: 'app-seasons',
@@ -7,4 +10,8 @@ import { Component } from '@angular/core';
 })
 export class SeasonsComponent {
   seasons = ['2018', '2019', '2020', '2021'];
+
+  constructor(private store: Store) {}
+
+  selectedSeason$ = this.store.select(SeasonSelectors.selectActiveSeason);
 }

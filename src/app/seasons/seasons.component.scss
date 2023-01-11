@@ -1,6 +1,18 @@
-
-.seasons {
+:host {
     display: flex;
-    flex-direction: row;
-    gap: 100px;
+    flex-direction: column;
+    padding: 12px;
+
+    .seasons {
+        width: 100%;
+        display: flex;
+        &-list {
+            display: flex;
+            flex-direction: row;
+            gap: 100px;
+            flex: 1;
+            justify-content: space-evenly;
+            padding: 0 0 12px 0;
+        }
+    }
 }

@@ -1,13 +1,13 @@
-<nav mat-tab-nav-bar [tabPanel]="tabPanel">
-    <a mat-tab-link
-       *ngFor="let link of navLinks"
-       [routerLink]="link.path"
-       routerLinkActive #rla="routerLinkActive"
-       [active]="rla.isActive">
-      {{link.label}}
-    </a>
-</nav>
-  
-<mat-tab-nav-panel #tabPanel>
-    <router-outlet></router-outlet>
-</mat-tab-nav-panel>
+<section class="details">
+    <div class="details-nav">
+        <ul>
+            <li *ngFor="let link of navLinks">
+                <a [routerLink]="link.path">{{link.label}}</a>
+            </li>
+        </ul>
+    </div>
+    <mat-divider [vertical]="true"></mat-divider>
+    <div class="details-content">
+        <router-outlet></router-outlet>
+    </div>
+</section>

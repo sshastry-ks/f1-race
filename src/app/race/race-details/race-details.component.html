@@ -1,4 +1,4 @@
-<mat-drawer-container class="example-container">
+<!-- <mat-drawer-container class="example-container">
     <mat-drawer mode="side" opened>
         <nav>
             <ul>
@@ -23,4 +23,24 @@
     <mat-drawer-content>
         <router-outlet></router-outlet>
     </mat-drawer-content>
-</mat-drawer-container>
+</mat-drawer-container> -->
+
+
+<section class="race-details">
+    <div class="race-details-info">Info content</div>
+    <div class="race-details-scoreboard mat-elevation-z2">
+          <nav mat-tab-nav-bar [tabPanel]="tabPanel">
+            <a mat-tab-link
+               *ngFor="let link of navLinks"
+               [routerLink]="link.path"
+               routerLinkActive #rla="routerLinkActive"
+               [active]="rla.isActive">
+              {{link.label}}
+            </a>
+        </nav>
+          
+        <mat-tab-nav-panel #tabPanel>
+            <router-outlet></router-outlet>
+        </mat-tab-nav-panel>
+    </div>
+</section>

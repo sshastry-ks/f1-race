@@ -1,9 +1,9 @@
 import { createAction, props } from "@ngrx/store";
 import { Driver } from "src/app/models";
 
-export const enterDriverList = createAction('[Driver List] Enter driver list');
+export const enterDriverList = createAction('[Drivers List] Enter driver list');
 
-export const loadDriverList = createAction('[Driver Effects] Load driver list');
+export const loadDriverList = createAction('[Drivers Effects] Load driver list');
 
 export const pageSizeChanged = createAction(
     '[Driver List] Page size changed', props<{ newPageSize: number}>()

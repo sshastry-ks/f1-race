@@ -11,6 +11,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { NavigationActionTiming, StoreRouterConnectingModule } from '@ngrx/router-store';
 import { CustomSerializer } from './store/app-route-serializer';
 import { reducers } from './store/app.reducer';
+import {MatToolbarModule} from '@angular/material/toolbar';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { reducers } from './store/app.reducer';
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
+    MatToolbarModule,
     StoreModule.forRoot(reducers, {}),
     EffectsModule.forRoot([]),
     StoreRouterConnectingModule.forRoot({

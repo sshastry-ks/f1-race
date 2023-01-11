@@ -12,7 +12,7 @@ export interface DriverState extends EntityState<Driver> {
 }
 
 export function selectId(driver: Driver) {
-    return driver.driverId;
+    return driver.code;
 }
 
 export const adapter: EntityAdapter<Driver> = createEntityAdapter<Driver>({

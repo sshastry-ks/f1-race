@@ -4,7 +4,6 @@ import { StoreModule } from '@ngrx/store';
 import { DriverEffects } from './drivers.effects';
 import { DriverReducer } from './drivers.reducer';
 import { DriverService } from './drivers.service';
-import { DriversListHeaderDataService } from './drivers-list-header-data.service';
 
 @NgModule({
     imports: [
@@ -12,8 +11,7 @@ import { DriversListHeaderDataService } from './drivers-list-header-data.service
         EffectsModule.forFeature([DriverEffects])
     ],
     providers: [
-        DriverService,
-        DriversListHeaderDataService
+        DriverService
     ]
 })
 export class DriverdataModule {}

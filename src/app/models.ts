@@ -9,10 +9,11 @@ export enum RequestState {
 }
 
 export interface Driver {
+    code: string;
     driverId: string;
     givenName: string;
     familyName: string;
-    dob: string;
+    dateOfBirth: string;
     permanentNumber: string;
     nationality: string;
 }
@@ -79,21 +80,24 @@ export interface RaceResult {
     laps: string;
     points: string;
     position: number;
-    driver: Driver;
+    Driver: Driver;
+    Time: {
+        time: string;
+    };
 }
 
 export interface RaceQualifying {
     position: string;
     number: string;
-    q1: string;
-    q2: string;
-    q3: string;
-    driver: Driver;
+    Q1: string;
+    Q2: string;
+    Q3: string;
+    Driver: Driver;
 }
 
 export interface DriverStanding {
     position: string;
-    driver: Driver;
+    Driver: Driver;
     points: string;
     wins: string;
 }
@@ -103,6 +107,13 @@ export interface Race {
     raceName: string;
     season: string;
     time: string;
+    Circuit: {
+        Location: {
+            country: string;
+            locality: string;
+        }
+    };
+    date: string;
 
 }
 
@@ -117,4 +128,31 @@ export interface ListHeaderDataFacade {
         currentPageSize: number;
         pageSizeOptions: number[]
     }>;
+}
+
+export const TABLE_DATA_CONNECTOR_SERVICE = new InjectionToken<string>('TableDataConnectorService');
+
+export interface ColDef {
+    columnDef: string;
+    header: string;
+    cell: (item: any) => string;
+}
+
+export interface TableViewModel {
+    items: Array<any>,
+    totalItems: number,
+    currentPageSize: number;
+    currentPage: number;
+    pageSizeOptions: number[];
+    isLoading: boolean;
+}
+
+export interface TableDataConnectorServiceFacade {
+    dispatchLoadDataAction: () => void;
+    dispatchMovePageAction: (direction: number) => void;
+    dispatchPageSizeChangedAction: (newPageSize: number) => void;
+    getTableColumnDef: () => ColDef[];
+    getDisplayedColumns: () => Array<string>;
+    getViewModel$: () => Observable<TableViewModel>;
+    rowSelected?: (row: any) => void;
 }

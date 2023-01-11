@@ -1,7 +1,23 @@
-.example-container {
-    height: 100%;
-}
+:host {
+    display: flex;
+    width: 100%;
+    flex: 1;
 
-ul {
-    list-style: none;
+    .race-details {
+        display: flex;
+        gap: 24px;
+        width: 100%;
+
+        &-info {
+            flex-basis: 200px;
+            flex-grow: 1;
+            flex-shrink: 0;
+        }
+
+        &-scoreboard {
+            flex-grow: 2;
+            flex-shrink: 1;
+            flex-basis: 350px;
+        }
+    }
 }

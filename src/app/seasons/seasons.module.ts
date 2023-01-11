@@ -7,6 +7,9 @@ import { MatCardModule } from '@angular/material/card';
 import { RouterModule, Routes } from '@angular/router';
 import { EffectsModule } from '@ngrx/effects';
 import { SeasonEffects } from './store/seasons.effects';
+import { MatIconModule } from '@angular/material/icon';
+import { MatChipsModule } from '@angular/material/chips';
+import {MatDividerModule} from '@angular/material/divider';
 
 const routes: Routes = [
   {
@@ -30,7 +33,9 @@ const routes: Routes = [
     CommonModule,
     StoreModule.forFeature('seasons', SeasonReducer),
     EffectsModule.forFeature([SeasonEffects]),
-    MatCardModule,
+    MatChipsModule,
+    MatIconModule,
+    MatDividerModule,
     RouterModule.forChild(routes)
   ]
 })

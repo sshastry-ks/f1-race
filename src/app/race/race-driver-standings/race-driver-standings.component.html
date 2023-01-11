@@ -1,10 +1,9 @@
-<section>
-    <app-list-header></app-list-header>
-</section>
-<section>
-    <mat-card
-        *ngFor="let raceDriverStandingsEntity of raceDriverStandingsList$ | async"
-    >
-        <mat-card-content>{{raceDriverStandingsEntity | json}}</mat-card-content>
-    </mat-card>
-</section>
+<ng-container *ngIf="vm$ | async as vm">
+    <app-table
+        [vm]="vm"
+        [columns]="columns"
+        [displayedColumns]="displayedColumns"
+        (pizeSizeChanged)="handlePageSizeChange($event)"
+        (pageMoved)="handlePageMoved($event)"
+    ></app-table>
+</ng-container>

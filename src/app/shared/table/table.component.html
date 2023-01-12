@@ -12,7 +12,7 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
         <tr
             mat-row
-            [ngClass]="{'gray': even, 'clickable': rowClickbale}"
+            [ngClass]="{'gray': even, 'clickable': rowClickbable}"
             *matRowDef="let row; let even=even; columns: displayedColumns;"
             (click)="rowSelected(row)"
         ></tr>

@@ -2,28 +2,11 @@
     display: flex;
     flex-direction: column;
 
-    // .seasons {
-    //     width: 100%;
-    //     display: flex;
-    //     &-list {
-    //         display: flex;
-    //         flex-direction: row;
-    //         gap: 100px;
-    //         flex: 1;
-    //         justify-content: space-evenly;
-    //         padding: 0 0 12px 0;
-    //     }
-    // }
-
-    // .active {
-    //     pointer-events: none
-    // }
-
     .banner {
         display: flex;
         flex-direction: row;
         gap: 20px;
-        height: 50px;
+        height: 65px;
         align-items: center;
         background-color: #673ab7;
         color: white;

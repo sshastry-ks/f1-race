@@ -31,11 +31,11 @@ const reducer = createReducer(
     on(
         RaceListActions.pageSizeChangedOrPageMoved,
         (state: RaceListState, {pageOptions}) => {
-            return adapter.removeAll({
+            return {
                 ...state,
                 limit: pageOptions.pageSize,
                 offset: pageOptions.pageIndex
-            })
+            };
         }
     )
 )

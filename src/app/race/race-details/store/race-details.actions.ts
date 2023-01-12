@@ -12,6 +12,5 @@ export const loadRaceEntitySuccess = createAction(
 );
 
 export const loadRaceEntityFailure = createAction(
-    '[Race Details Effects] Load Race entity failure',
-    props<{ error: any}>()
+    '[Race Details Effects] Load Race entity failure'
 );

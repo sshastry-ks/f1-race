@@ -1,3 +1,11 @@
 :host {
-    padding: 12px;
+    .description-list {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 20px 0;
+
+        mat-list-item {
+            width: 50%;
+        }
+    }
 }

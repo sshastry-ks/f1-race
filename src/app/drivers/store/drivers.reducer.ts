@@ -31,11 +31,11 @@ const reducer = createReducer(
     on(
         DriverAtcions.pageSizeChangedOrPageMoved,
         (state: DriversListState, {pageOptions}) => {
-            return adapter.removeAll({
+            return {
                 ...state,
                 limit: pageOptions.pageSize,
                 offset: pageOptions.pageIndex
-            })
+            };
         }
     ),
 

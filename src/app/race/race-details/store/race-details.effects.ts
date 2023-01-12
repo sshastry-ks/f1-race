@@ -7,6 +7,8 @@ import * as RaceListSelectors from '../../race-list/store/race.selectors';
 import { SeasonsSelectors } from '@seasons/store';
 import { filter, map, switchMap } from "rxjs";
 import { RacesListResponse } from "@race/models";
+import { catchError } from "rxjs";
+import { of } from "rxjs";
 
 
 @Injectable()
@@ -18,6 +20,11 @@ export class RaceDetailsEffects {
         private raceDetailsService: RaceDetailsService
     ) { }
 
+    /**
+     * We can optimize loading race details further by querying the
+     * store for a specific race and only approach to the API if the store
+     * doesnt have the required race details. 
+     */
     loadRaceDetails$ = createEffect(() => {
         return this.actions$.pipe(
             ofType(RaceDetailsActions.loadRaceEntity),
@@ -36,6 +43,9 @@ export class RaceDetailsEffects {
                         return RaceDetailsActions.loadRaceEntitySuccess({race: races[0]})
                     })
                 )
+            }),
+            catchError((_) => {
+                return of(RaceDetailsActions.loadRaceEntityFailure());
             })
         )
     });

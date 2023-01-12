@@ -1,3 +1,7 @@
+interface RaceDate {
+    date: string;
+}
+
 export interface Race {
     round: string;
     raceName: string;
@@ -10,6 +14,10 @@ export interface Race {
         }
     };
     date: string;
+    FirstPractice?: RaceDate;
+    SecondPractice?: RaceDate;
+    ThirdPractice?: RaceDate;
+    Qualifying?: RaceDate;
 }
 
 export interface RacesListResponse {

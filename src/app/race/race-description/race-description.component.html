@@ -1,5 +1,5 @@
-<section class="race-description">
-    <mat-list>
+<section>
+    <mat-list class="description-list">
         <mat-list-item>
           <mat-icon matListItemIcon>sports_score</mat-icon>
           <div matListItemTitle>Season</div>
@@ -16,6 +16,13 @@
             <div matListItemLine>{{raceEntity?.raceName}}</div>
         </mat-list-item>
         <mat-list-item>
+            <mat-icon matListItemIcon>pin_drop</mat-icon>
+            <div matListItemTitle>Location</div>
+            <div matListItemLine>
+                {{raceEntity?.Circuit?.Location?.locality + ', ' + raceEntity?.Circuit?.Location?.country}}
+            </div>
+        </mat-list-item>
+        <mat-list-item>
             <mat-icon matListItemIcon>calendar_month</mat-icon>
             <div matListItemTitle>Date</div>
             <div matListItemLine>{{raceEntity?.date}}</div>
@@ -25,11 +32,32 @@
             <div matListItemTitle>Time</div>
             <div matListItemLine>{{raceEntity?.time}}</div>
         </mat-list-item>
-        <mat-list-item>
-            <mat-icon matListItemIcon>pin_drop</mat-icon>
-            <div matListItemTitle>Location</div>
+        <mat-list-item *ngIf="raceEntity?.Qualifying?.date">
+            <mat-icon matListItemIcon>calendar_month</mat-icon>
+            <div matListItemTitle>Qualifying</div>
             <div matListItemLine>
-                {{raceEntity?.Circuit?.Location?.locality + ', ' + raceEntity?.Circuit?.Location?.country}}
+                {{raceEntity?.Qualifying?.date}}
+            </div>
+        </mat-list-item>
+        <mat-list-item *ngIf="raceEntity?.FirstPractice?.date">
+            <mat-icon matListItemIcon>calendar_month</mat-icon>
+            <div matListItemTitle>First Practice</div>
+            <div matListItemLine>
+                {{raceEntity?.FirstPractice?.date}}
+            </div>
+        </mat-list-item>
+        <mat-list-item *ngIf="raceEntity?.SecondPractice?.date">
+            <mat-icon matListItemIcon>calendar_month</mat-icon>
+            <div matListItemTitle>Second Practice</div>
+            <div matListItemLine>
+                {{raceEntity?.SecondPractice?.date}}
+            </div>
+        </mat-list-item>
+        <mat-list-item *ngIf="raceEntity?.ThirdPractice?.date">
+            <mat-icon matListItemIcon>calendar_month</mat-icon>
+            <div matListItemTitle>Third Practice</div>
+            <div matListItemLine>
+                {{raceEntity?.ThirdPractice?.date}}
             </div>
         </mat-list-item>
         <mat-divider></mat-divider>

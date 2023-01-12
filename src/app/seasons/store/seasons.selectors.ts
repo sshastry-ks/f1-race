@@ -2,7 +2,6 @@ import { createSelector } from "@ngrx/store";
 import { RouterState } from "src/app/store/app-route-serializer";
 import { AppSelectors } from '@app/store';
 
-// route params selector 
 export const selectActiveSeason = createSelector(
     AppSelectors.selectRouterState,
     (routerstate: RouterState | null) => {

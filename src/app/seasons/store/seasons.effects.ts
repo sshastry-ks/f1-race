@@ -16,6 +16,10 @@ export class SeasonsEffects {
             ofType(routerNavigatedAction),
             concatLatestFrom(() => this.store.select(SeasonSelectors.selectActiveSeason)),
             map(([_, season]) => season),
+            /**
+             * always save the last value for the season to avoid
+             * event storming.
+             */
             scan((previous, currentSeason) => {
                 return {
                     previousSeason: previous.currentSeason,

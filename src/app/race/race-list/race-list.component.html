@@ -1,10 +1,10 @@
 <ng-container *ngIf="vm$ | async as vm">
-    <section class="mat-elevation-z4">
+    <section class="mat-elevation-z1">
         <app-table
             [vm]="vm"
             [columns]="columns"
             [displayedColumns]="displayedColumns"
-            [rowClickbale]="true"
+            [rowClickbable]="true"
             (rowSelectionChanged)="handleRowSelection($event)"
             (pageSizeChangedOrMoved)="handlePageSizeChangedOrMoved($event)"
         ></app-table>

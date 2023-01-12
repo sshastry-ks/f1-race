@@ -5,7 +5,7 @@ import { DriverListResponse } from '@drivers/models';
 @Injectable()
 export class DriverService {
 
-    private readonly DRIVERS_URL = 'http://ergast.com/api/f1/{{year}}/drivers.json';
+    private readonly DRIVERS_URL = '/api/f1/{{year}}/drivers.json';
 
     constructor(private httpClient: HttpClient) {}
 

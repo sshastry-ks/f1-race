@@ -5,7 +5,7 @@ import { RacesListResponse } from '@race/models';
 @Injectable()
 export class RaceService {
 
-    private readonly RACE_LIST_URL = 'http://ergast.com/api/f1/{{year}}.json';
+    private readonly RACE_LIST_URL = '/api/f1/{{year}}.json';
 
     constructor(private httpClient: HttpClient) {}
 

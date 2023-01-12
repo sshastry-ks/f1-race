@@ -5,7 +5,7 @@ import { StatusCountsResponse } from "@seasons/status-counts/models";
 @Injectable()
 export class StatusCountsService {
 
-    private readonly STATUS_COUNTS_URL = 'http://ergast.com/api/f1/{{year}}/status.json';
+    private readonly STATUS_COUNTS_URL = '/api/f1/{{year}}/status.json';
 
     constructor(private httpClient: HttpClient) {}
 

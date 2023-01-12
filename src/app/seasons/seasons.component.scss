@@ -1,22 +1,53 @@
 :host {
     display: flex;
     flex-direction: column;
-    padding: 12px;
 
-    .seasons {
-        width: 100%;
+    // .seasons {
+    //     width: 100%;
+    //     display: flex;
+    //     &-list {
+    //         display: flex;
+    //         flex-direction: row;
+    //         gap: 100px;
+    //         flex: 1;
+    //         justify-content: space-evenly;
+    //         padding: 0 0 12px 0;
+    //     }
+    // }
+
+    // .active {
+    //     pointer-events: none
+    // }
+
+    .banner {
         display: flex;
-        &-list {
+        flex-direction: row;
+        gap: 20px;
+        height: 50px;
+        align-items: center;
+        background-color: #673ab7;
+        color: white;
+
+        &-name {
+            padding: 0 8px;
+            border-right: 2px solid white;
+            font-size: 20px;
+            font-weight: 650;
+        }
+
+        &-seasons {
             display: flex;
             flex-direction: row;
-            gap: 100px;
-            flex: 1;
-            justify-content: space-evenly;
-            padding: 0 0 12px 0;
-        }
-    }
+            gap: 12px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
 
-    .active {
-        pointer-events: none
+            &-active {
+                pointer-events: none;
+                color: #bca2a2;
+                cursor: none !important;
+            }
+        }
     }
 }

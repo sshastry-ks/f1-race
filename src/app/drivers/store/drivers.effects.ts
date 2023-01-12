@@ -9,7 +9,6 @@ import { switchMap, map, filter } from "rxjs";
 import { DriverService } from "./drivers.service";
 import { DriverListResponse } from "src/app/models";
 
-
 @Injectable()
 export class DriverEffects {
 
@@ -28,7 +27,7 @@ export class DriverEffects {
         map((_) => DriverActions.loadDriverList())
     ));
 
-    loadDriverList$ = createEffect(() => this.actions$.pipe(
+    loadDriversList$ = createEffect(() => this.actions$.pipe(
         ofType(DriverActions.loadDriverList),
         concatLatestFrom(_ => [
             this.store.select(SeasonSelectors.selectActiveSeason),

@@ -1,11 +1,15 @@
 <section class="race-details">
     <div class="race-details-info">
+        <div class="race-details-header">
+            <a [routerLink]="['../']"><mat-icon>arrow_back_ios</mat-icon></a>
+            <h2>Race Details</h2>
+        </div>
         <app-race-description
             [raceEntity]="raceEntity$ | async"
         ></app-race-description>
     </div>
     <div class="race-details-scoreboard mat-elevation-z2">
-          <nav mat-tab-nav-bar [tabPanel]="tabPanel">
+          <nav mat-tab-nav-bar [tabPanel]="tabPanel" mat-stretch-tabs="false">
             <a mat-tab-link
                *ngFor="let link of navLinks"
                [routerLink]="link.path"

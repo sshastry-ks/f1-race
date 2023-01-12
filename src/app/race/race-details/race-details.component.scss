@@ -15,6 +15,25 @@
             flex-shrink: 0;
         }
 
+        &-header {
+            display: flex;
+            flex-direction: row;
+            gap: 2px;
+            align-items: center;
+
+            h2 {
+                margin: 0;
+                font-weight: 400;
+            }
+
+            mat-icon {
+                font-size: 20px;
+                margin-top: 10px;
+                color: #673ab7;
+                cursor: pointer;
+            }
+        }
+
         &-scoreboard {
             flex-grow: 2;
             flex-shrink: 1;

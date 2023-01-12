@@ -28,7 +28,6 @@ const reducer = createReducer(
     })
 );
 
-
 export function raceDetailsReducer(state: RaceDetailState | undefined, action: Action) {
     return reducer(state, action);
 }

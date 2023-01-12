@@ -1,10 +1,9 @@
 import { createAction, props } from "@ngrx/store";
-import { Race } from "src/app/models";
+import { CarStatusCounts, Race, StatusCount } from "src/app/models";
 
 export const loadRaceEntity = createAction(
     '[Race Details Page] Load Race entity'
 );
-
 
 // API actions
 export const loadRaceEntitySuccess = createAction(

@@ -1,0 +1,9 @@
+<section class="status">
+    <p>Car Stats</p>
+    <mat-list class="status-counts">
+        <mat-list-item *ngFor="let statusCount of statusCounts$ | async">
+            <div matListItemTitle>{{statusCount.status}}</div>
+            <div matListItemLine>{{statusCount.count}}</div>
+        </mat-list-item>
+    </mat-list>
+</section>

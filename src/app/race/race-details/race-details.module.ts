@@ -6,6 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 import {MatTabsModule} from '@angular/material/tabs';
 import { RaceDescriptionModule } from '../race-description/race-description.module';
 import { RaceDetailsDataModule } from './store/race-details.data.module';
+import { MatIconModule } from '@angular/material/icon';
 
 const routes:Routes = [
   {
@@ -41,6 +42,7 @@ const routes:Routes = [
     CommonModule,
     MatSidenavModule,
     MatTabsModule,
+    MatIconModule,
     RaceDescriptionModule,
     RaceDetailsDataModule,
     RouterModule.forChild(routes)

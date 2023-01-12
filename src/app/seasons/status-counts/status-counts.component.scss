@@ -1,0 +1,19 @@
+:host {
+    display: flex;
+
+    .status {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        align-items: center;
+
+        &-header {
+
+        }
+
+        &-counts {
+            display: flex;
+            flex-direction: row;
+        }
+    }
+}

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { RacesListResponse } from 'src/app/models';
+import { RacesListResponse, StatusCountsResponse } from 'src/app/models';
 
 @Injectable()
 export class RaceDetailsService {
@@ -14,5 +14,4 @@ export class RaceDetailsService {
             this.Races_URL.replace('{{year}}', season).replace('{{raceId}}', raceId)
         );
     }
-
 }

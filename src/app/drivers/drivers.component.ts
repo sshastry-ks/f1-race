@@ -43,12 +43,12 @@ export class DriversComponent {
 displayedColumns = this.columns.map(c => c.columnDef);
 
 vm$ = combineLatest([
-  this.store.select(DriverSelectors.selectAllDrivers),
-  this.store.select(DriverSelectors.selectTotalDrivers),
-  this.store.select(DriverSelectors.selectCurrentPageSize),
-  this.store.select(DriverSelectors.selectCurrentPage),
-  this.store.select(DriverSelectors.selectPageSizeOptions),
-  this.store.select(DriverSelectors.SelectIsLoadingDriverList),
+    this.store.select(DriverSelectors.selectAllDrivers),
+    this.store.select(DriverSelectors.selectTotalDrivers),
+    this.store.select(DriverSelectors.selectCurrentPageSize),
+    this.store.select(DriverSelectors.selectCurrentPage),
+    this.store.select(DriverSelectors.selectPageSizeOptions),
+    this.store.select(DriverSelectors.SelectIsLoadingDriverList),
   ]).pipe(
   map(([items, totalItems, currentPageSize, currentPage, pageSizeOptions, isLoading]) => {
       return {
@@ -61,8 +61,11 @@ vm$ = combineLatest([
       }
   }));
 
-
   constructor(private store: Store) { }
+
+  ngOnInit() {
+    this.store.dispatch(DriverActions.enterDriverList());
+  }
 
   handlePageSizeChangedOrMoved(pageOptions: PageEvent) {
     this.store.dispatch(DriverActions.pageSizeChangedOrPageMoved({pageOptions}))

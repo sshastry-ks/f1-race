@@ -129,3 +129,23 @@ export interface TableViewModel {
     pageSizeOptions: number[];
     isLoading: boolean;
 }
+
+export interface CarStatusCounts {
+    finished: number;
+    accident: number;
+    oneLap: number; 
+}
+
+export interface StatusCount {
+    statusId: string;
+    status: string;
+    count: string;
+}
+
+export interface StatusCountsResponse {
+    MRData: {
+        StatusTable: {
+            Status: StatusCount[]
+        }
+    }
+}

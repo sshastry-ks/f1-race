@@ -1,0 +1,14 @@
+:host {
+    .table-container {
+        max-height: calc(100vh - 260px);
+        overflow: auto;
+    }
+
+    .gray {
+        background-color: #f4f4f4
+    }
+
+    .mat-row:hover {
+        background-color: inherit;
+    }
+}

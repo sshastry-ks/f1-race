@@ -1,8 +1,10 @@
 <ng-container *ngIf="vm$ | async as vm">
-    <app-table
-        [vm]="vm"
-        [columns]="columns"
-        [displayedColumns]="displayedColumns"
-        (pageSizeChangedOrMoved)="handlePageSizeChangedOrMoved($event)"
-    ></app-table>
+    <section class="drivers-table-conatiner mat-elevation-z4">
+        <app-table
+            [vm]="vm"
+            [columns]="columns"
+            [displayedColumns]="displayedColumns"
+            (pageSizeChangedOrMoved)="handlePageSizeChangedOrMoved($event)"
+        ></app-table>
+    </section>
 </ng-container>

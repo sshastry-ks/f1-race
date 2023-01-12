@@ -2,11 +2,11 @@ import { Injectable } from "@angular/core";
 import { Actions, concatLatestFrom, createEffect, ofType } from "@ngrx/effects";
 import { Store } from "@ngrx/store";
 import { RaceDetailsService } from "./race-details.service";
-import * as RaceDetailActions from './race-details.actions';
+import * as RaceDetailsActions from './race-details.actions';
 import * as RaceListSelectors from '../../race-list/store/race.selectors';
 import * as SeasonSelectors from '../../../seasons/store/seasons.selectors';
 import { filter, map, switchMap } from "rxjs";
-import { RacesListResponse } from "src/app/models";
+import { RacesListResponse, StatusCount, StatusCountsResponse } from "src/app/models";
 
 
 @Injectable()
@@ -20,7 +20,7 @@ export class RaceDetailsEffects {
 
     loadRaceDetails$ = createEffect(() => {
         return this.actions$.pipe(
-            ofType(RaceDetailActions.loadRaceEntity),
+            ofType(RaceDetailsActions.loadRaceEntity),
             concatLatestFrom(() => [
                 this.store.select(SeasonSelectors.selectActiveSeason),
                 this.store.select(RaceListSelectors.selectActiveRaceId)
@@ -33,10 +33,10 @@ export class RaceDetailsEffects {
                     map((response: RacesListResponse) => {
                         const {MRData: { RaceTable: { Races: races}}} = response;
 
-                        return RaceDetailActions.loadRaceEntitySuccess({race: races[0]})
+                        return RaceDetailsActions.loadRaceEntitySuccess({race: races[0]})
                     })
                 )
             })
         )
-    })
+    });
 }

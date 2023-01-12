@@ -1,17 +1,3 @@
-<!-- <section class="details">
-    <div class="details-nav">
-        <ul>
-            <li *ngFor="let link of navLinks">
-                <a [routerLink]="link.path">{{link.label}}</a>
-            </li>
-        </ul>
-    </div>
-    <mat-divider [vertical]="true"></mat-divider>
-    <div class="details-content">
-        <router-outlet></router-outlet>
-    </div>
-</section> -->
-
 <section class="details">
     <div>
         <nav mat-tab-nav-bar [tabPanel]="tabPanel" mat-stretch-tabs="false">
@@ -23,15 +9,20 @@
             >
               {{link.label}}
             </a>
+            <a mat-tab-link
+               *ngIf="isSelectedSeason2021$ | async"
+               [routerLink]="'status-counts'"
+               routerLinkActive #rla="routerLinkActive"
+               [active]="rla.isActive"
+            >
+              Status Counts
+            </a>
         </nav>
     </div>
     <div>
         <mat-tab-nav-panel #tabPanel>
             <router-outlet></router-outlet>
         </mat-tab-nav-panel>
-    </div>
-    <div>
-        <app-status-counts></app-status-counts>
     </div>
 </section>
   

@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { SeasonsComponent } from './seasons.component';
 import { StoreModule } from '@ngrx/store';
 import { SeasonReducer } from './store/seasons.reducer';
-import { MatCardModule } from '@angular/material/card';
 import { RouterModule, Routes } from '@angular/router';
 import { EffectsModule } from '@ngrx/effects';
 import { SeasonEffects } from './store/seasons.effects';

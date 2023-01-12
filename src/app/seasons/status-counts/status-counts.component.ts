@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import * as StatusCountsSelectors from './store/status-counts.selectors';
 import * as StatusCountsActions from './store/status-counts.actions';
+import { combineLatest, map } from 'rxjs';
 
 @Component({
   selector: 'app-status-counts',
@@ -9,7 +10,17 @@ import * as StatusCountsActions from './store/status-counts.actions';
   styleUrls: ['./status-counts.component.scss']
 })
 export class StatusCountsComponent {
-  statusCounts$ = this.store.select(StatusCountsSelectors.selectStatusCounts);
+  vm$ = combineLatest([
+    this.store.select(StatusCountsSelectors.selectStatusCounts),
+    this.store.select(StatusCountsSelectors.selectIsLoadingStatusCounts)
+  ]).pipe(
+    map(([statusCounts, isLoadingStatusCounts]) => {
+      return {
+        statusCounts,
+        isLoadingStatusCounts
+      }
+    })
+  );
 
   constructor(private store: Store) {}
 

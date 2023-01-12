@@ -9,4 +9,14 @@ export const selectActiveSeason = createSelector(AppSelectors.selectRouterState,
     }
 
     return routerstate.allParams['season'] || '';
- })
+});
+
+export const selectIsCurrentSeason2021 = createSelector(
+    selectActiveSeason, (selectedSeason: string | null) => {
+        if(!selectedSeason) {
+            return null;
+        }
+
+        return selectedSeason === '2021';
+    }
+)

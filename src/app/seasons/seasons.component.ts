@@ -8,7 +8,7 @@ import * as SeasonSelectors from './store/seasons.selectors';
   styleUrls: ['./seasons.component.scss']
 })
 export class SeasonsComponent {
-  seasons = ['2018', '2019', '2020', '2021'];
+  seasons = ['2021', '2020', '2019', '2018'];
 
   constructor(private store: Store) {}
 

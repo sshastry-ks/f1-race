@@ -12,7 +12,7 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
         <tr
             mat-row
-            [ngClass]="{gray: even}"
+            [ngClass]="{'gray': even, 'clickable': rowClickbale}"
             *matRowDef="let row; let even=even; columns: displayedColumns;"
             (click)="rowSelected(row)"
         ></tr>
@@ -20,7 +20,7 @@
 </div>
 
 
-<mat-paginator #paginator
+<mat-paginator #paginator *ngIf="vm.totalItems >= 10"
     class="demo-paginator"
     (page)="handlePageEvent($event)"
     [length]="vm.totalItems"

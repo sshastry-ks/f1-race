@@ -11,4 +11,13 @@
     .mat-row:hover {
         background-color: inherit;
     }
+
+    .clickable {
+        cursor: pointer;
+
+        &:hover {
+            text-decoration: underline;
+            font-size: 400;
+        }
+    }
 }

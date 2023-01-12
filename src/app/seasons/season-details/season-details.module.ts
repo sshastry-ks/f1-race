@@ -24,6 +24,10 @@ const routes: Routes = [
         loadChildren: () => import('../../race/race-details/race-details.module').then(m => m.RaceDetailsModule)
       },
       {
+        path: 'status-counts',
+        loadChildren: () => import('../status-counts/status-counts.module').then(m => m.StatusCountsModule)
+      },
+      {
         path: '',
         pathMatch: 'full',
         redirectTo: 'drivers'
@@ -40,7 +44,6 @@ const routes: Routes = [
     CommonModule,
     MatTabsModule,
     MatDividerModule,
-    StatusCountsModule,
     RouterModule.forChild(routes)
   ]
 })

@@ -11,6 +11,7 @@ export class TableComponent {
   @Input() public vm!: any;
   @Input() public displayedColumns!: string[];
   @Input() public columns!: ColDef[];
+  @Input() public rowClickbale: boolean = false;
 
   @Output() pageSizeChangedOrMoved = new EventEmitter<PageEvent>();
   @Output() rowSelectionChanged = new EventEmitter<any>();

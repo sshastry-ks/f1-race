@@ -9,7 +9,7 @@ const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'seasons'
+    redirectTo: 'seasons/2021'
   }
 ];
 

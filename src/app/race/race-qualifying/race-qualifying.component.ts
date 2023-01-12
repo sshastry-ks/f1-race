@@ -4,6 +4,8 @@ import { Store } from '@ngrx/store';
 import { combineLatest, map } from 'rxjs';
 import { RaceQualifying } from '@race/models';
 import { PageEvent } from '@angular/material/paginator';
+import { ColDef, TableViewModel } from '@app/shared';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-race-qualifying',
@@ -11,7 +13,7 @@ import { PageEvent } from '@angular/material/paginator';
   styleUrls: ['./race-qualifying.component.scss']
 })
 export class RaceQualifyingComponent {
-  columns = [
+  columns: ColDef[] = [
     {
       columnDef: 'position',
       header: 'Position',
@@ -44,7 +46,7 @@ export class RaceQualifyingComponent {
     }
   ];
   displayedColumns = this.columns.map(c => c.columnDef);
-  vm$ = combineLatest([
+  vm$: Observable<TableViewModel<RaceQualifying>> = combineLatest([
     this.store.select(RaceQualifyingListSelectors.selectAllRaceQulifyingRecords),
     this.store.select(RaceQualifyingListSelectors.selectTotalRaceResults),
     this.store.select(RaceQualifyingListSelectors.selectCurrentPageSize),

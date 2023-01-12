@@ -8,6 +8,8 @@ import * as RaceListSelectors from '../../race-list/store/race.selectors'
 import { switchMap, map } from "rxjs";
 import { RaceDriverStandingsListService } from "./race-driver-standings.service";
 import { RaceDriverStandingsResponse } from '@race/models';
+import { catchError } from "rxjs";
+import { of } from "rxjs";
 
 
 @Injectable()
@@ -40,13 +42,15 @@ export class RaceDriverStandingsListEffects {
                 .pipe(
                     map((response: RaceDriverStandingsResponse) => {
                         const { MRData: { StandingsTable: { StandingsLists: standingsList}, total: totalItems}} = response;
-                        
+
                         return RaceDriverStandingsListActions.loadRaceDriverStandingsListSuccess(
                             { driverStandingsList: standingsList[0].DriverStandings, totalItems}
                         );
                     })
-                //error handling
                 );
+        }),
+        catchError((_) => {
+            return of(RaceDriverStandingsListActions.loadRaceDriverStandingsFailure());
         })
     ));
 }

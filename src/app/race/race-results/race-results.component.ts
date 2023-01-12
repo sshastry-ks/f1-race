@@ -4,6 +4,8 @@ import { RaceResultsActions, RaceResultSelectors } from './store'
 import { combineLatest, map } from 'rxjs';
 import { RaceResult } from '@race/models';
 import { PageEvent } from '@angular/material/paginator';
+import { ColDef, TableViewModel } from '@app/shared';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-race-results',
@@ -11,7 +13,7 @@ import { PageEvent } from '@angular/material/paginator';
   styleUrls: ['./race-results.component.scss']
 })
 export class RaceResultsComponent {
-  columns = [
+  columns: ColDef[] = [
     {
       columnDef: 'position',
       header: 'Position',
@@ -51,7 +53,7 @@ export class RaceResultsComponent {
 
   displayedColumns = this.columns.map(c => c.columnDef);
 
-  vm$ = combineLatest([
+  vm$: Observable<TableViewModel<RaceResult>> = combineLatest([
     this.store.select(RaceResultSelectors.selectAllRaceResults),
     this.store.select(RaceResultSelectors.selectTotalRaceResults),
     this.store.select(RaceResultSelectors.selectCurrentPageSize),

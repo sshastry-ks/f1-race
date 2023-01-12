@@ -16,6 +16,11 @@
             *matRowDef="let row; let even=even; columns: displayedColumns;"
             (click)="rowSelected(row)"
         ></tr>
+        <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell empty" [attr.colspan]="displayedColumns.length">
+              No data.
+            </td>
+          </tr>
     </table>
 </div>
 

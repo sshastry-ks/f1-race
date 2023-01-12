@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RaceListComponent } from './race-list.component';
 import { RaceDataModule } from './store';
 import { RouterModule, Routes } from '@angular/router'
-import { TableModule } from 'src/app/shared/table/table.module';
+import { TableModule } from '@app/shared';
 
 const routes: Routes = [
   {

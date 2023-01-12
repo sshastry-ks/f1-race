@@ -6,6 +6,8 @@ import * as StatusCountsActions from './status-counts.actions';
 import { SeasonsSelectors } from '@seasons/store'
 import { filter, map, switchMap } from 'rxjs/operators';
 import { StatusCount, StatusCountsResponse } from "@seasons/status-counts/models";
+import { catchError } from "rxjs";
+import { of } from "rxjs";
 
 @Injectable()
 export class StatusCountsEffects {
@@ -44,6 +46,9 @@ export class StatusCountsEffects {
                         return StatusCountsActions.loadStatusCountsSuccess({statusCounts: requiredStatusCounts})
                     })
                 )
+            }),
+            catchError((_) => {
+                return of(StatusCountsActions.loadStatusCountsFailure());
             })
 
         )

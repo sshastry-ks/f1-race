@@ -4,6 +4,8 @@ import { DriversListActions, DriversListSelectors } from './store';
 import { combineLatest, map } from 'rxjs';
 import { Driver } from '@drivers/models';
 import { PageEvent } from '@angular/material/paginator';
+import { ColDef, TableViewModel } from '@app/shared';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-drivers',
@@ -11,7 +13,7 @@ import { PageEvent } from '@angular/material/paginator';
   styleUrls: ['./drivers.component.scss'],
 })
 export class DriversComponent {
-  columns = [
+  columns: ColDef[] = [
     {
       columnDef: 'name',
       header: 'Name',
@@ -41,7 +43,7 @@ export class DriversComponent {
 
 displayedColumns = this.columns.map(c => c.columnDef);
 
-vm$ = combineLatest([
+vm$: Observable<TableViewModel<Driver>> = combineLatest([
     this.store.select(DriversListSelectors.selectAllDrivers),
     this.store.select(DriversListSelectors.selectTotalDrivers),
     this.store.select(DriversListSelectors.selectCurrentPageSize),

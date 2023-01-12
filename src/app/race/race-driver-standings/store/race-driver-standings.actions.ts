@@ -22,6 +22,5 @@ export const loadRaceDriverStandingsListSuccess = createAction(
 );
 
 export const loadRaceDriverStandingsFailure = createAction(
-    '[Race Driver-standings List Effects] Load race driver-standings list failure',
-    props<{error: any}>()
+    '[Race Driver-standings List Effects] Load race driver-standings list failure'
 );

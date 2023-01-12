@@ -19,6 +19,5 @@ export const loadRaceListSuccess = createAction(
 );
 
 export const loadRaceListFailure = createAction(
-    '[Race List Effects] Load race list failure',
-    props<{error: any}>()
+    '[Race List Effects] Load race list failure'
 );

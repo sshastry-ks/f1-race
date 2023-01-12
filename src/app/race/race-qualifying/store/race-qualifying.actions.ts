@@ -23,5 +23,4 @@ export const loadRaceQualifyingListSuccess = createAction(
 
 export const loadRaceQualifyingListFailure = createAction(
     '[Race Qualifying List Effects] Load race qualifying list failure',
-    props<{error: any}>()
 );

@@ -11,11 +11,13 @@ import { combineLatest, map } from 'rxjs';
 export class StatusCountsComponent {
   vm$ = combineLatest([
     this.store.select(StatusCountsSelectors.selectStatusCounts),
+    this.store.select(StatusCountsSelectors.selectTotalStatus),
     this.store.select(StatusCountsSelectors.selectIsLoadingStatusCounts)
   ]).pipe(
-    map(([statusCounts, isLoadingStatusCounts]) => {
+    map(([statusCounts, totalStatus, isLoadingStatusCounts]) => {
       return {
         statusCounts,
+        totalStatus,
         isLoadingStatusCounts
       }
     })

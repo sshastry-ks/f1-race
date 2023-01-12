@@ -4,6 +4,8 @@ import { Store } from '@ngrx/store';
 import { DriverStanding } from '@race/models';
 import { combineLatest, map } from 'rxjs';
 import { PageEvent } from '@angular/material/paginator';
+import { ColDef, TableViewModel } from '@app/shared';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-race-driver-standings',
@@ -11,7 +13,7 @@ import { PageEvent } from '@angular/material/paginator';
   styleUrls: ['./race-driver-standings.component.scss']
 })
 export class RaceDriverStandingsComponent {
-  columns = [
+  columns: ColDef[] = [
     {
       columnDef: 'position',
       header: 'Position',
@@ -41,7 +43,7 @@ export class RaceDriverStandingsComponent {
 
   displayedColumns = this.columns.map(c => c.columnDef);
 
-  vm$ = combineLatest([
+  vm$: Observable<TableViewModel<DriverStanding>> = combineLatest([
     this.store.select(RaceDriverStandingsListSelectors.selectAllRaceDriverStandingsRecords),
     this.store.select(RaceDriverStandingsListSelectors.selectTotalRaceDriverStandingsRecords),
     this.store.select(RaceDriverStandingsListSelectors.selectCurrentPageSize),

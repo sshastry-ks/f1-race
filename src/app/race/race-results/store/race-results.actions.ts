@@ -20,6 +20,5 @@ export const loadRaceResultsListSuccess = createAction(
 );
 
 export const loadRaceResultsListFailure = createAction(
-    '[Race Results Effects] Load race results list failure',
-    props<{error: any}>()
+    '[Race Results Effects] Load race results list failure'
 );

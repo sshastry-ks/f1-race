@@ -13,3 +13,8 @@ export const selectStatusCounts = createSelector(
     selectStatusCountsFeature,
     (state: StatusCountsState) => state.statusCounts
 );
+
+export const selectTotalStatus = createSelector(
+    selectStatusCountsFeature,
+    (state: StatusCountsState) => state.statusCounts.length
+);

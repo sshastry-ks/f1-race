@@ -7,6 +7,8 @@ import { SeasonsActions, SeasonsSelectors } from '@seasons/store';
 import { switchMap, map, filter } from "rxjs";
 import { DriverService } from "./drivers.service";
 import { DriverListResponse } from '@drivers/models';
+import { catchError } from "rxjs";
+import { of } from "rxjs";
 
 @Injectable()
 export class DriversListEffects {
@@ -41,8 +43,10 @@ export class DriversListEffects {
                     const { MRData: { DriverTable: { Drivers: drivers}, total: totalItems}} = response;
                     return DriverActions.loadDriversListSuccess({ drivers, totalItems})
                 })
-                //error handling
             )
+        }),
+        catchError((_) => {
+            return of(DriverActions.loadDriversListFailure());
         })
     ));
 

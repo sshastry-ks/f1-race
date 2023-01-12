@@ -8,6 +8,8 @@ import * as RaceListSelectors from '../../race-list/store/race.selectors'
 import { switchMap, map, filter } from "rxjs";
 import { RaceResultsService } from "./race-results.service";
 import { RacesResultsListResponse } from '@race/models';
+import { catchError } from "rxjs";
+import { of } from "rxjs";
 
 @Injectable()
 export class RaceResultsEffects {
@@ -43,8 +45,10 @@ export class RaceResultsEffects {
                     
                     return RaceResultActions.loadRaceResultsListSuccess({ raceResults: races[0].Results, totalItems})
                 })
-                //error handling
             )
+        }),
+        catchError((_) => {
+            return of(RaceResultActions.loadRaceResultsListFailure());
         })
     ));
 }

@@ -29,7 +29,7 @@ export const selectCurrentPageSize = createSelector(
     (state: RaceListState) => state.limit
 );
 
-export const selectCurrnetPage = createSelector(
+export const selectCurrentPage = createSelector(
     selectRaceListFeature,
     (state: RaceListState) => state.offset
 );
@@ -39,7 +39,7 @@ export const selectPageSizeOptions = createSelector(
     (state: RaceListState) => state.pageSizeOptions
 );
 
-export const selectRaceListQueryParams = createSelector(selectCurrnetPage, selectCurrentPageSize, (page, limit) => {
+export const selectRaceListQueryParams = createSelector(selectCurrentPage, selectCurrentPageSize, (page, limit) => {
     return {
         offset: page * limit,
         limit

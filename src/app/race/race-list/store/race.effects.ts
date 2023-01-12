@@ -7,6 +7,8 @@ import { SeasonsSelectors } from '@seasons/store'
 import { switchMap, map } from "rxjs";
 import { RaceService } from "./race.service";
 import { RacesListResponse } from "@race/models";
+import { catchError } from "rxjs";
+import { of } from "rxjs";
 
 @Injectable()
 export class RaceListEffects {
@@ -36,6 +38,9 @@ export class RaceListEffects {
                 })
                 //error handling
             )
+        }),
+        catchError((_) => {
+            return of(RaceListActions.loadRaceListFailure());
         })
     ));
 }

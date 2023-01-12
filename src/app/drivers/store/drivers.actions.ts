@@ -23,5 +23,4 @@ export const loadDriversListSuccess = createAction(
 
 export const loadDriversListFailure = createAction(
     '[Driver List Effects] Load drivers list failure',
-    props<{ error: any }>()
 );

@@ -5,6 +5,8 @@ import { combineLatest, map } from 'rxjs'
 import { Race } from '@race/models';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PageEvent } from '@angular/material/paginator';
+import { ColDef, TableViewModel } from '@app/shared';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-race-list',
@@ -14,7 +16,7 @@ import { PageEvent } from '@angular/material/paginator';
 export class RaceListComponent {
   constructor(private store: Store, private router: Router, private activatedRoute: ActivatedRoute) { }
 
-  columns = [
+  columns: ColDef[] = [
     {
       columnDef: 'round',
       header: 'Round',
@@ -44,13 +46,13 @@ export class RaceListComponent {
 
   displayedColumns = this.columns.map(c => c.columnDef);
 
-  vm$ = combineLatest([
+  vm$: Observable<TableViewModel<Race>> = combineLatest([
     this.store.select(RaceListSelectors.selectAllRaces),
     this.store.select(RaceListSelectors.selectTotalRaces),
     this.store.select(RaceListSelectors.selectCurrentPageSize),
-    this.store.select(RaceListSelectors.selectCurrnetPage),
+    this.store.select(RaceListSelectors.selectCurrentPage),
     this.store.select(RaceListSelectors.selectPageSizeOptions),
-    this.store.select(RaceListSelectors.selectActiveRaceEntity),
+    this.store.select(RaceListSelectors.selectIsLoadingRaceList),
     ]).pipe(
     map(([items, totalItems, currentPageSize, currentPage, pageSizeOptions, isLoading]) => {
         return {

@@ -18,6 +18,5 @@ export const loadStatusCountsSuccess = createAction(
 );
 
 export const loadStatusCountsFailure = createAction(
-    '[Status Counts Effects] Load status counts failure',
-    props<{ error: any }>()
+    '[Status Counts Effects] Load status counts failure'
 );

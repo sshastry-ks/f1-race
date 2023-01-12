@@ -5,9 +5,9 @@ export interface ColDef {
     cellTitle?: string;
 }
 
-export interface TableViewModel {
-    items: Array<any>,
-    totalItems: number,
+export interface TableViewModel<T> {
+    items: Array<T>;
+    totalItems: number;
     currentPageSize: number;
     currentPage: number;
     pageSizeOptions: number[];

@@ -2,7 +2,7 @@
     <mat-progress-bar mode="indeterminate" *ngIf="vm.isLoadingStatusCounts"></mat-progress-bar>
     <section class="status">
         <p class="status-header">Car Counts by Status</p>
-        <mat-list class="status-counts mat-elevation-z8">
+        <mat-list class="status-counts mat-elevation-z8" *ngIf="vm.totalStatus">
             <mat-list-item *ngFor="let statusCount of vm.statusCounts">
                 <div matListItemTitle>{{ statusCount.status}}</div>
                 <div matListItemLine>{{statusCount.count}}</div>

@@ -21,7 +21,7 @@ const reducer = createReducer(
         })
     }),
 
-    on(RaceQualifyingActions.loadRaceQualifyingFailure, (State: RaceQualifyingListState) => {
+    on(RaceQualifyingActions.loadRaceQualifyingListFailure, (State: RaceQualifyingListState) => {
         return {
             ...State,
             requestState: RequestState.ERROR

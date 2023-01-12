@@ -13,7 +13,7 @@ const reducer = createReducer(
         }
     }),
 
-    on(StatusCountsActions.loadCarStatusCountsSuccess, (state: StatusCountsState, {statusCounts}) => {
+    on(StatusCountsActions.loadStatusCountsSuccess, (state: StatusCountsState, {statusCounts}) => {
         return {
             ...state,
             statusCounts,
@@ -21,7 +21,7 @@ const reducer = createReducer(
         }
     }),
 
-    on(StatusCountsActions.loadCarStatusCountsFailure, (state: StatusCountsState) => {
+    on(StatusCountsActions.loadStatusCountsFailure, (state: StatusCountsState) => {
         return {
             ...state,
             requestState: RequestState.ERROR

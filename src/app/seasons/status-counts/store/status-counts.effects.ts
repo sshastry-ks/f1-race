@@ -18,7 +18,7 @@ export class StatusCountsEffects {
 
     triggercarStatusCounts$ = createEffect(() => {
         return this.actions$.pipe(
-            ofType(StatusCountsActions.enterSeasonDetails),
+            ofType(StatusCountsActions.enterStatusCounts),
             concatLatestFrom(() =>   this.store.select(SeasonSelectors.selectActiveSeason)),
             filter(([_, currentSeason]) => currentSeason === '2021'),
             map(([_, season]) => {
@@ -41,7 +41,7 @@ export class StatusCountsEffects {
                                 statusCount.status.toLocaleLowerCase().includes('+1 lap')
                         );
 
-                        return StatusCountsActions.loadCarStatusCountsSuccess({statusCounts: requiredStatusCounts})
+                        return StatusCountsActions.loadStatusCountsSuccess({statusCounts: requiredStatusCounts})
                     })
                 )
             })

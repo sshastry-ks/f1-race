@@ -1,12 +1,12 @@
-import { CarStatusCounts, Race, RequestState, StatusCount } from "src/app/models";
+import { Race, RequestState, StatusCount } from "src/app/models";
 
-export interface RaceDetailState {
+export interface RaceDetailsState {
     race: Race | null;
     statusCounts: StatusCount[];
     requestState: RequestState;
 }
 
-export const initalRaceDetailState: RaceDetailState = {
+export const initalRaceDetailsState: RaceDetailsState = {
     race: null,
     statusCounts: [],
     requestState: RequestState.INIT,

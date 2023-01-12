@@ -1,26 +1,3 @@
-<!-- <mat-toolbar class="banner">
-    <mat-toolbar-row>
-      <span>Formula 1 Race</span>
-      
-        <section class="seasons">
-            <div class="seasons-list">
-                <mat-chip-listbox [multiple]="false">
-                    <mat-chip-option
-                        *ngFor="let season of seasons"
-                        [selectable]="true"
-                        [selected]="(selectedSeason$ | async) === season"
-                        [routerLink]="['./', season]"
-                        routerLinkActive="active"
-                        [value]="season"
-                    >
-                        {{season}}
-                    </mat-chip-option>
-                </mat-chip-listbox>
-            </div>
-        </section>
-    </mat-toolbar-row>
-</mat-toolbar> -->
-
 <section class="banner">
     <div class="banner-name">
         Formula 1 Race
@@ -34,8 +11,5 @@
     </div>
 
 </section>
-
-
-<mat-divider></mat-divider>
 
 <router-outlet></router-outlet>

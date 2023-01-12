@@ -4,7 +4,6 @@ import { StatusCountsComponent } from './status-counts.component';
 import { StatusCountsDataModule } from './store/status-counts.data.module';
 import { MatListModule } from '@angular/material/list';
 import { RouterModule, Routes } from '@angular/router';
-import { MatIconModule } from '@angular/material/icon';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 const routes: Routes = [

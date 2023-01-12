@@ -33,12 +33,6 @@ export const selectCurrentPage = createSelector(
     (state: RaceQualifyingListState) => state.offset
 );
 
-export const selectTotalPages = createSelector(
-    selectTotalRaceResults,
-    selectCurrentPageSize,
-    (total, pageSize) => Math.ceil(total / pageSize)
-);
-
 export const selectPageSizeOptions = createSelector(
     selectRaceQualifyingListFeature,
     (state: RaceQualifyingListState) => state.pageSizeOptions

@@ -1,19 +1,19 @@
 import { Action, createReducer, on, State } from "@ngrx/store";
-import { adapter, DriverState, initalDriverState } from "./drivers.state";
+import { adapter, DriversListState, initalDriversListState } from "./drivers.state";
 import * as DriverAtcions from './drivers.actions';
 import { RequestState } from "src/app/models";
 
 const reducer = createReducer(
-    initalDriverState,
+    initalDriversListState,
 
-    on(DriverAtcions.loadDriverList, (State: DriverState) => {
+    on(DriverAtcions.loadDriversList, (State: DriversListState) => {
         return {
             ...State,
             requestState: RequestState.LOADING
         }
     }),
 
-    on(DriverAtcions.loadDriverListSuccess, (State: DriverState, {drivers, totalItems}) => {
+    on(DriverAtcions.loadDriversListSuccess, (State: DriversListState, {drivers, totalItems}) => {
         return adapter.setAll(drivers, {
             ...State, 
             totalItems,
@@ -21,7 +21,7 @@ const reducer = createReducer(
         })
     }),
 
-    on(DriverAtcions.loadDriverListFailure, (State: DriverState) => {
+    on(DriverAtcions.loadDriversListFailure, (State: DriversListState) => {
         return {
             ...State,
             requestState: RequestState.ERROR
@@ -30,7 +30,7 @@ const reducer = createReducer(
 
     on(
         DriverAtcions.pageSizeChangedOrPageMoved,
-        (state: DriverState, {pageOptions}) => {
+        (state: DriversListState, {pageOptions}) => {
             return adapter.removeAll({
                 ...state,
                 limit: pageOptions.pageSize,
@@ -39,16 +39,16 @@ const reducer = createReducer(
         }
     ),
 
-    on(DriverAtcions.resetPaginationParams, (state: DriverState) => {
+    on(DriverAtcions.resetPaginationParams, (state: DriversListState) => {
         return adapter.removeAll({
             ...state,
-            limit: initalDriverState.limit,
-            offset: initalDriverState.offset
+            limit: initalDriversListState.limit,
+            offset: initalDriversListState.offset
         })
     })
 
 );
 
-export function DriverReducer(state: DriverState | undefined, action: Action) {
+export function DriversListReducer(state: DriversListState | undefined, action: Action) {
     return reducer(state, action)
 }

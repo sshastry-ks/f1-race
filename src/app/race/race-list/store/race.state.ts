@@ -24,5 +24,4 @@ export const initalRaceListState: RaceListState = adapter.getInitialState({
     offset: 0,
     totalItems: 0,
     pageSizeOptions: [10, 15, 25],
-    selectedRaceId: null
 })

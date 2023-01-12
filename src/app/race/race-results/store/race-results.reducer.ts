@@ -1,19 +1,19 @@
 import { Action, createReducer, on } from "@ngrx/store";
-import * as RaceResultActions from './race-results.actions';
+import * as RaceResultsActions from './race-results.actions';
 import { RequestState } from "src/app/models";
-import { RaceResultState, initalRaceResultState, adapter } from "./race-results.state";
+import { RaceResultsState, initalRaceResultsState, adapter } from "./race-results.state";
 
 const reducer = createReducer(
-    initalRaceResultState,
+    initalRaceResultsState,
 
-    on(RaceResultActions.loadRaceResultsList, (State: RaceResultState) => {
+    on(RaceResultsActions.loadRaceResultsList, (State: RaceResultsState) => {
         return {
             ...State,
             requestState: RequestState.LOADING
         }
     }),
 
-    on(RaceResultActions.loadRaceResultsListSuccess, (State: RaceResultState, {raceResults, totalItems}) => {
+    on(RaceResultsActions.loadRaceResultsListSuccess, (State: RaceResultsState, {raceResults, totalItems}) => {
         return adapter.setAll(raceResults, {
             ...State, 
             totalItems,
@@ -21,7 +21,7 @@ const reducer = createReducer(
         })
     }),
 
-    on(RaceResultActions.loadRaceResultsListFailure, (State: RaceResultState) => {
+    on(RaceResultsActions.loadRaceResultsListFailure, (State: RaceResultsState) => {
         return {
             ...State,
             requestState: RequestState.ERROR
@@ -29,8 +29,8 @@ const reducer = createReducer(
     }),
 
     on(
-        RaceResultActions.pageSizeChangedOrPageMoved,
-        (state: RaceResultState, {pageOptions}) => {
+        RaceResultsActions.pageSizeChangedOrPageMoved,
+        (state: RaceResultsState, {pageOptions}) => {
             return adapter.removeAll({
                 ...state,
                 limit: pageOptions.pageSize,
@@ -40,6 +40,6 @@ const reducer = createReducer(
     )
 )
 
-export function RaceResultsReducer(state: RaceResultState | undefined, action: Action) {
+export function raceResultsReducer(state: RaceResultsState | undefined, action: Action) {
     return reducer(state, action)
 }

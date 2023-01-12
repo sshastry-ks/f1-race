@@ -3,7 +3,7 @@ import { createEntityAdapter, EntityAdapter } from "@ngrx/entity";
 import { Driver, RequestState } from "src/app/models";
 
 
-export interface DriverState extends EntityState<Driver> {
+export interface DriversListState extends EntityState<Driver> {
     requestState: RequestState;
     limit: number;
     offset: number;
@@ -19,7 +19,7 @@ export const adapter: EntityAdapter<Driver> = createEntityAdapter<Driver>({
     selectId
 });
 
-export const initalDriverState: DriverState = adapter.getInitialState({
+export const initalDriversListState: DriversListState = adapter.getInitialState({
     requestState: RequestState.INIT,
     limit: 10,
     offset: 0,

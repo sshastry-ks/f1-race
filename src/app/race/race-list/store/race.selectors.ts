@@ -4,14 +4,14 @@ import { adapter, RaceListState } from "./race.state";
 import * as AppSelectors from '../../../store/app.selectors';
 import { RouterState } from "src/app/store/app-route-serializer";
 
-export const selectRaceListFeature = createFeatureSelector<RaceListState>('racesList');
+export const selectRaceListFeature = createFeatureSelector<RaceListState>('raceList');
 
 const {
     selectAll,
     selectEntities
 } = adapter.getSelectors();
 
-export const SelectIsLoadingRaceList = createSelector(
+export const selectIsLoadingRaceList = createSelector(
     selectRaceListFeature, (state: RaceListState) => state.requestState === RequestState.LOADING
 );
 
@@ -32,12 +32,6 @@ export const selectCurrentPageSize = createSelector(
 export const selectCurrnetPage = createSelector(
     selectRaceListFeature,
     (state: RaceListState) => state.offset
-);
-
-export const selectTotalPages = createSelector(
-    selectTotalRaces,
-    selectCurrentPageSize,
-    (total, pageSize) => Math.ceil(total / pageSize)
 );
 
 export const selectPageSizeOptions = createSelector(

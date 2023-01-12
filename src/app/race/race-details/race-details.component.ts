@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import * as RaceDetailsSelectors from './store/race-details.selectors';
 import * as RaceDetailsActions from './store/race-details.actions';
+import { combineLatest, map } from 'rxjs';
 
 @Component({
   selector: 'app-race-details',
@@ -24,7 +25,17 @@ export class RaceDetailsComponent {
     }
   ];
 
-  raceEntity$ = this.store.select(RaceDetailsSelectors.selectActiveRaceEntity);
+  vm$ = combineLatest([
+    this.store.select(RaceDetailsSelectors.selectActiveRaceEntity),
+    this.store.select(RaceDetailsSelectors.selectIsLoadingRaceDetails)
+  ]).pipe(
+    map(([raceEntity, isLoadingRaceEntity]) => {
+      return {
+        raceEntity,
+        isLoadingRaceEntity
+      }
+    })
+  );
   
   constructor(private store: Store) {}
 

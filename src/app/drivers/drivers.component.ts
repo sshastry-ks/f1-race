@@ -64,7 +64,7 @@ vm$ = combineLatest([
   constructor(private store: Store) { }
 
   ngOnInit() {
-    this.store.dispatch(DriverActions.enterDriverList());
+    this.store.dispatch(DriverActions.enterDriversList());
   }
 
   handlePageSizeChangedOrMoved(pageOptions: PageEvent) {

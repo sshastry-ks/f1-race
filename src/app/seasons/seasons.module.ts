@@ -1,14 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SeasonsComponent } from './seasons.component';
-import { StoreModule } from '@ngrx/store';
-import { SeasonReducer } from './store/seasons.reducer';
 import { RouterModule, Routes } from '@angular/router';
-import { EffectsModule } from '@ngrx/effects';
-import { SeasonEffects } from './store/seasons.effects';
-import { MatChipsModule } from '@angular/material/chips';
-import {MatDividerModule} from '@angular/material/divider';
-import {MatToolbarModule} from '@angular/material/toolbar';
+import { SeasonsDataModule } from './store/seasons.data.module';
 
 const routes: Routes = [
   {
@@ -28,11 +22,7 @@ const routes: Routes = [
   exports: [SeasonsComponent],
   imports: [
     CommonModule,
-    StoreModule.forFeature('seasons', SeasonReducer),
-    EffectsModule.forFeature([SeasonEffects]),
-    MatChipsModule,
-    MatDividerModule,
-    MatToolbarModule,
+    SeasonsDataModule,
     RouterModule.forChild(routes)
   ]
 })

@@ -1,19 +1,19 @@
 import { Action, createReducer, on } from "@ngrx/store";
 import { adapter, initalRaceListState, RaceListState } from "./race.state";
-import * as RaceActions from './race.actions';
+import * as RaceListActions from './race.actions';
 import { RequestState } from "src/app/models";
 
 const reducer = createReducer(
     initalRaceListState,
 
-    on(RaceActions.loadRaceList, (State: RaceListState) => {
+    on(RaceListActions.loadRaceList, (State: RaceListState) => {
         return {
             ...State,
             requestState: RequestState.LOADING
         }
     }),
 
-    on(RaceActions.loadRaceListSuccess, (State: RaceListState, {races, totalItems}) => {
+    on(RaceListActions.loadRaceListSuccess, (State: RaceListState, {races, totalItems}) => {
         return adapter.setAll(races, {
             ...State, 
             totalItems,
@@ -21,7 +21,7 @@ const reducer = createReducer(
         })
     }),
 
-    on(RaceActions.loadRaceListFailure, (State: RaceListState) => {
+    on(RaceListActions.loadRaceListFailure, (State: RaceListState) => {
         return {
             ...State,
             requestState: RequestState.ERROR
@@ -29,7 +29,7 @@ const reducer = createReducer(
     }),
 
     on(
-        RaceActions.pageSizeChangedOrPageMoved,
+        RaceListActions.pageSizeChangedOrPageMoved,
         (state: RaceListState, {pageOptions}) => {
             return adapter.removeAll({
                 ...state,

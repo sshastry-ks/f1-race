@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import * as RaceSelectors from './store/race.selectors';
-import * as RaceActions from './store/race.actions';
+import * as RaceListSelectors from './store/race.selectors';
+import * as RaceListActions from './store/race.actions';
 import { combineLatest, map } from 'rxjs'
 import { Race } from 'src/app/models';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -46,12 +46,12 @@ export class RaceListComponent {
   displayedColumns = this.columns.map(c => c.columnDef);
 
   vm$ = combineLatest([
-    this.store.select(RaceSelectors.selectAllRaces),
-    this.store.select(RaceSelectors.selectTotalRaces),
-    this.store.select(RaceSelectors.selectCurrentPageSize),
-    this.store.select(RaceSelectors.selectCurrnetPage),
-    this.store.select(RaceSelectors.selectPageSizeOptions),
-    this.store.select(RaceSelectors.SelectIsLoadingRaceList),
+    this.store.select(RaceListSelectors.selectAllRaces),
+    this.store.select(RaceListSelectors.selectTotalRaces),
+    this.store.select(RaceListSelectors.selectCurrentPageSize),
+    this.store.select(RaceListSelectors.selectCurrnetPage),
+    this.store.select(RaceListSelectors.selectPageSizeOptions),
+    this.store.select(RaceListSelectors.selectActiveRaceEntity),
     ]).pipe(
     map(([items, totalItems, currentPageSize, currentPage, pageSizeOptions, isLoading]) => {
         return {
@@ -66,11 +66,11 @@ export class RaceListComponent {
   
 
   ngOnInit() {
-    this.store.dispatch(RaceActions.enterRaceList());
+    this.store.dispatch(RaceListActions.enterRaceList());
   }
 
   handlePageSizeChangedOrMoved(pageOptions: PageEvent) {
-    this.store.dispatch(RaceActions.pageSizeChangedOrPageMoved({pageOptions}))
+    this.store.dispatch(RaceListActions.pageSizeChangedOrPageMoved({pageOptions}))
   }
 
   handleRowSelection(row: Race) {

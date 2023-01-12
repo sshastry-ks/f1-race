@@ -10,7 +10,7 @@ import { DriverService } from "./drivers.service";
 import { DriverListResponse } from "src/app/models";
 
 @Injectable()
-export class DriverEffects {
+export class DriversListEffects {
 
     constructor(
         private actions$: Actions,
@@ -20,15 +20,15 @@ export class DriverEffects {
 
     triggerLoadDriversList$ = createEffect(() => this.actions$.pipe(
         ofType(
-            DriverActions.enterDriverList,
+            DriverActions.enterDriversList,
             DriverActions.pageSizeChangedOrPageMoved,
             DriverActions.resetPaginationParams
         ),
-        map((_) => DriverActions.loadDriverList())
+        map((_) => DriverActions.loadDriversList())
     ));
 
     loadDriversList$ = createEffect(() => this.actions$.pipe(
-        ofType(DriverActions.loadDriverList),
+        ofType(DriverActions.loadDriversList),
         concatLatestFrom(_ => [
             this.store.select(SeasonSelectors.selectActiveSeason),
             this.store.select(DriverSelectors.selectDriverListQueryParams)
@@ -40,7 +40,7 @@ export class DriverEffects {
             return this.driverService.getDriversList(season, queryParams.offset, queryParams.limit).pipe(
                 map((response: DriverListResponse) => {
                     const { MRData: { DriverTable: { Drivers: drivers}, total: totalItems}} = response;
-                    return DriverActions.loadDriverListSuccess({ drivers, totalItems})
+                    return DriverActions.loadDriversListSuccess({ drivers, totalItems})
                 })
                 //error handling
             )

@@ -25,6 +25,6 @@ export class StatusCountsComponent {
   constructor(private store: Store) {}
 
   ngOnInit() {
-    this.store.dispatch(StatusCountsActions.enterSeasonDetails());
+    this.store.dispatch(StatusCountsActions.enterStatusCounts());
   }
 }

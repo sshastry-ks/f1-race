@@ -40,6 +40,6 @@ const reducer = createReducer(
     )
 )
 
-export function RaceDriverStandingsListReducer(state: RaceDriverStandingsListState | undefined, action: Action) {
+export function raceDriverStandingsListReducer(state: RaceDriverStandingsListState | undefined, action: Action) {
     return reducer(state, action)
 }

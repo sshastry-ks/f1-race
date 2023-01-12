@@ -11,7 +11,6 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { CustomSerializer } from './store/app-route-serializer';
 import { reducers } from './store/app.reducer';
-import {MatToolbarModule} from '@angular/material/toolbar';
 
 @NgModule({
   declarations: [
@@ -22,12 +21,13 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
-    MatToolbarModule,
     StoreModule.forRoot(reducers, {}),
     EffectsModule.forRoot([]),
     StoreRouterConnectingModule.forRoot({
       serializer: CustomSerializer
     }),
+
+    // remove in production builds
     StoreDevtoolsModule.instrument({maxAge: 25}),
   ],
   providers: [Test],

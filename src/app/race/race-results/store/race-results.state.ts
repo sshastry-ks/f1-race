@@ -2,7 +2,7 @@ import { EntityState } from "@ngrx/entity";
 import { createEntityAdapter, EntityAdapter } from "@ngrx/entity";
 import { RaceResult, RequestState } from "src/app/models";
 
-export interface RaceResultState extends EntityState<RaceResult> {
+export interface RaceResultsState extends EntityState<RaceResult> {
     requestState: RequestState;
     limit: number;
     offset: number;
@@ -18,7 +18,7 @@ export const adapter: EntityAdapter<RaceResult> = createEntityAdapter<RaceResult
     selectId
 });
 
-export const initalRaceResultState: RaceResultState = adapter.getInitialState({
+export const initalRaceResultsState: RaceResultsState = adapter.getInitialState({
     requestState: RequestState.INIT,
     limit: 10,
     offset: 0,

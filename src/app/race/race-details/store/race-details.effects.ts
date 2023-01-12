@@ -6,7 +6,7 @@ import * as RaceDetailsActions from './race-details.actions';
 import * as RaceListSelectors from '../../race-list/store/race.selectors';
 import * as SeasonSelectors from '../../../seasons/store/seasons.selectors';
 import { filter, map, switchMap } from "rxjs";
-import { RacesListResponse, StatusCount, StatusCountsResponse } from "src/app/models";
+import { RacesListResponse } from "src/app/models";
 
 
 @Injectable()
@@ -26,7 +26,7 @@ export class RaceDetailsEffects {
                 this.store.select(RaceListSelectors.selectActiveRaceId)
             ]),
             filter(([_, season, raceId]) => {
-                return season && raceId
+                return season && raceId;
             }),
             switchMap(([_, season, raceId]) => {
                 return this.raceDetailsService.getRacesDetails(season, raceId).pipe(

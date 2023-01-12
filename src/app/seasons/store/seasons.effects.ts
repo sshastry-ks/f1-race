@@ -7,7 +7,7 @@ import * as SeasonActions from './seasons.actions';
 import * as SeasonSelectors from './seasons.selectors'
 
 @Injectable()
-export class SeasonEffects {
+export class SeasonsEffects {
 
     constructor(private actions$: Actions, private store: Store) {}
 
@@ -17,7 +17,6 @@ export class SeasonEffects {
             concatLatestFrom(() => this.store.select(SeasonSelectors.selectActiveSeason)),
             map(([_, season]) => season),
             scan((previous, currentSeason) => {
-                console.log(previous, currentSeason)
                 return {
                     previousSeason: previous.currentSeason,
                     currentSeason
@@ -25,7 +24,6 @@ export class SeasonEffects {
             }, { previousSeason: null, currentSeason: null}),
             filter(({previousSeason, currentSeason}) => previousSeason !== currentSeason),
             map(() => {
-                console.log('herere')
                 return SeasonActions.seasonSelectionChanged();
             })
         );

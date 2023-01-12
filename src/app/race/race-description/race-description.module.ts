@@ -4,7 +4,6 @@ import { RaceDescriptionComponent } from './race-description.component';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 
-
 @NgModule({
   declarations: [
     RaceDescriptionComponent

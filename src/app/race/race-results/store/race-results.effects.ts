@@ -18,7 +18,7 @@ export class RaceResultsEffects {
         private raceResultsService: RaceResultsService
     ) {}
 
-    triggerLoadRaceList$ = createEffect(() => this.actions$.pipe(
+    triggerLoadRaceResults$ = createEffect(() => this.actions$.pipe(
         ofType(
             RaceResultActions.enterRaceResultsList,
             RaceResultActions.pageSizeChangedOrPageMoved
@@ -26,7 +26,7 @@ export class RaceResultsEffects {
         map((_) => RaceResultActions.loadRaceResultsList())
     ));
 
-    loadDriverList$ = createEffect(() => this.actions$.pipe(
+    loadLoadRaceResults$ = createEffect(() => this.actions$.pipe(
         ofType(RaceResultActions.loadRaceResultsList),
         concatLatestFrom(_ => [
             this.store.select(SeasonSelectors.selectActiveSeason),

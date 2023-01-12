@@ -5,6 +5,7 @@
     <div class="banner-seasons">
         <div
             *ngFor="let season of seasons"
+            class="season"
             [routerLink]="['./', season]"
             routerLinkActive="banner-seasons-active"
         >{{season}}</div>

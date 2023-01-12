@@ -7,14 +7,14 @@
         &-details {
             display: flex;
             flex-direction: column;
-            flex: 1 0 500px;
+            flex: 0 0 500px;
         }
 
         &-header {
             display: flex;
             align-items: center;
             gap: 2px;
-            padding: 0 0 0 20px;
+            padding: 20px;
             
             h2 {
                 margin: 0 0 4px 0;
@@ -23,7 +23,9 @@
         }
 
         &-scoreboard {
-           width: 200%
+           display: flex;
+           flex-direction: column;
+           flex: 3 0 500px;
         }
     }
 }

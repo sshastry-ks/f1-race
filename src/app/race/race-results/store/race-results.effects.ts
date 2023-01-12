@@ -35,8 +35,8 @@ export class RaceResultsEffects {
             this.store.select(RaceListSelectors.selectActiveRaceId),
             this.store.select(RaceResultSelectors.selectRaceResultsQueryParams)
         ]),
-        filter(([_, season, round, _queryParams]) => {
-            return season && round;
+        filter(([_, season, raceId, _queryParams]) => {
+            return season && raceId;
         }),
         switchMap(([_, season, round, queryParams]) => {
             return this.raceResultsService.getRaceResultsList(season, round, queryParams.offset, queryParams.limit).pipe(

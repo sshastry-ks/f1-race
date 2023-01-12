@@ -36,7 +36,6 @@ export class RaceListEffects {
                     const { MRData: { RaceTable: { Races: races}, total: totalItems}} = response;
                     return RaceListActions.loadRaceListSuccess({ races, totalItems})
                 })
-                //error handling
             )
         }),
         catchError((_) => {

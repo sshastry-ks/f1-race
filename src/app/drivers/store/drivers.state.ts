@@ -1,6 +1,7 @@
 import { EntityState } from "@ngrx/entity";
 import { createEntityAdapter, EntityAdapter } from "@ngrx/entity";
-import { Driver, RequestState } from "src/app/models";
+import { Driver } from "@drivers/models";
+import { RequestState } from '@app/models';
 
 
 export interface DriversListState extends EntityState<Driver> {

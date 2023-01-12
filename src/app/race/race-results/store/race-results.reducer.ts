@@ -1,6 +1,6 @@
 import { Action, createReducer, on } from "@ngrx/store";
 import * as RaceResultsActions from './race-results.actions';
-import { RequestState } from "src/app/models";
+import { RequestState } from '@app/models';
 import { RaceResultsState, initalRaceResultsState, adapter } from "./race-results.state";
 
 const reducer = createReducer(

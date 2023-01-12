@@ -3,11 +3,10 @@ import { Actions, concatLatestFrom, createEffect, ofType } from "@ngrx/effects";
 import { Store } from "@ngrx/store";
 import * as DriverActions from './drivers.actions';
 import * as DriverSelectors from './drivers.selectors';
-import * as SeasonSelectors from '../../seasons/store/seasons.selectors';
-import * as SeasonActions from '../../seasons/store/seasons.actions';
+import { SeasonsActions, SeasonsSelectors } from '@seasons/store';
 import { switchMap, map, filter } from "rxjs";
 import { DriverService } from "./drivers.service";
-import { DriverListResponse } from "src/app/models";
+import { DriverListResponse } from '@drivers/models';
 
 @Injectable()
 export class DriversListEffects {
@@ -30,7 +29,7 @@ export class DriversListEffects {
     loadDriversList$ = createEffect(() => this.actions$.pipe(
         ofType(DriverActions.loadDriversList),
         concatLatestFrom(_ => [
-            this.store.select(SeasonSelectors.selectActiveSeason),
+            this.store.select(SeasonsSelectors.selectActiveSeason),
             this.store.select(DriverSelectors.selectDriverListQueryParams)
         ]),
         filter(([_, season, _queryParams]) => {
@@ -49,7 +48,7 @@ export class DriversListEffects {
 
     resetPaginationparams$ = createEffect(() => {
         return this.actions$.pipe(
-            ofType(SeasonActions.seasonSelectionChanged),
+            ofType(SeasonsActions.seasonSelectionChanged),
             map((_) => {
                 return DriverActions.resetPaginationParams()
             })

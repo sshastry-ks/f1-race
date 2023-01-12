@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { DriverListResponse } from 'src/app/models';
+import { DriverListResponse } from '@drivers/models';
 
 @Injectable()
 export class DriverService {

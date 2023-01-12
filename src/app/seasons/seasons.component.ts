@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import * as SeasonSelectors from './store/seasons.selectors';
+import { SeasonsSelectors } from './store';
 
 @Component({
   selector: 'app-seasons',
@@ -12,5 +12,5 @@ export class SeasonsComponent {
 
   constructor(private store: Store) {}
 
-  selectedSeason$ = this.store.select(SeasonSelectors.selectActiveSeason);
+  selectedSeason$ = this.store.select(SeasonsSelectors.selectActiveSeason);
 }

@@ -1,5 +1,5 @@
 import { createAction, props } from "@ngrx/store";
-import { StatusCount } from "src/app/models";
+import { StatusCount } from "@seasons/status-counts/models";
 
 export const enterStatusCounts = createAction(
     '[Status Counts Page] Enter status counts page'

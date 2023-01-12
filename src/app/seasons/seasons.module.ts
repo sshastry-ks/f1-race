@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SeasonsComponent } from './seasons.component';
 import { RouterModule, Routes } from '@angular/router';
-import { SeasonsDataModule } from './store/seasons.data.module';
+import { SeasonsDataModule } from './store';
 
 const routes: Routes = [
   {

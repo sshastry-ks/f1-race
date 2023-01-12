@@ -1,6 +1,7 @@
 import { EntityState } from "@ngrx/entity";
 import { createEntityAdapter, EntityAdapter } from "@ngrx/entity";
-import { DriverStanding, RequestState } from "src/app/models";
+import { DriverStanding } from '@race/models';
+import { RequestState } from '@app/models';
 
 export interface RaceDriverStandingsListState extends EntityState<DriverStanding> {
     requestState: RequestState;

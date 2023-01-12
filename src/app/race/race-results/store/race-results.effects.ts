@@ -3,11 +3,11 @@ import { Actions, concatLatestFrom, createEffect, ofType } from "@ngrx/effects";
 import { Store } from "@ngrx/store";
 import * as RaceResultActions from './race-results.actions';
 import * as RaceResultSelectors from './race-results.selectors';
-import * as SeasonSelectors from '../../../seasons/store/seasons.selectors';
+import { SeasonsSelectors } from '@seasons/store'
 import * as RaceListSelectors from '../../race-list/store/race.selectors'
 import { switchMap, map, filter } from "rxjs";
 import { RaceResultsService } from "./race-results.service";
-import { RacesResultsListResponse } from "src/app/models";
+import { RacesResultsListResponse } from '@race/models';
 
 @Injectable()
 export class RaceResultsEffects {
@@ -29,7 +29,7 @@ export class RaceResultsEffects {
     loadLoadRaceResults$ = createEffect(() => this.actions$.pipe(
         ofType(RaceResultActions.loadRaceResultsList),
         concatLatestFrom(_ => [
-            this.store.select(SeasonSelectors.selectActiveSeason),
+            this.store.select(SeasonsSelectors.selectActiveSeason),
             this.store.select(RaceListSelectors.selectActiveRaceId),
             this.store.select(RaceResultSelectors.selectRaceResultsQueryParams)
         ]),

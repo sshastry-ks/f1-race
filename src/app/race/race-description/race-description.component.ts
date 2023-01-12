@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Race } from 'src/app/models';
+import { Race } from '@race/models';
 
 @Component({
   selector: 'app-race-description',

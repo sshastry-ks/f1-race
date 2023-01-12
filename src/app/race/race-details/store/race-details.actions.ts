@@ -1,5 +1,5 @@
 import { createAction, props } from "@ngrx/store";
-import { Race } from "src/app/models";
+import { Race } from "@race/models";
 
 export const loadRaceEntity = createAction(
     '[Race Details Page] Load Race entity'

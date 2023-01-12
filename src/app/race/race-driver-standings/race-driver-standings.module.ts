@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RaceDriverStandingsComponent } from './race-driver-standings.component';
-import { RaceDriverStandingsDataModule } from './store/race-driver-standings.data.module';
+import { RaceDriverStandingsDataModule } from './store';
 import { RouterModule, Routes } from '@angular/router';
 import { TableModule } from 'src/app/shared/table/table.module';
 

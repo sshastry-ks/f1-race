@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
-import * as RaceQualifyingListSelectors from './store/race-qualifying.selectors';
-import * as RaceQualifyingListActions from './store/race-qualifying.actions';
+import { RaceQualifyingListActions, RaceQualifyingListSelectors} from './store';
 import { Store } from '@ngrx/store';
 import { combineLatest, map } from 'rxjs';
-import { RaceQualifying } from 'src/app/models';
+import { RaceQualifying } from '@race/models';
 import { PageEvent } from '@angular/material/paginator';
 
 @Component({

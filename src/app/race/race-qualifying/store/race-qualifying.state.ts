@@ -1,6 +1,7 @@
 import { EntityState } from "@ngrx/entity";
 import { createEntityAdapter, EntityAdapter } from "@ngrx/entity";
-import { RaceQualifying, RequestState } from "src/app/models";
+import { RaceQualifying } from '@race/models';
+import { RequestState } from '@app/models';
 
 export interface RaceQualifyingListState extends EntityState<RaceQualifying> {
     requestState: RequestState;

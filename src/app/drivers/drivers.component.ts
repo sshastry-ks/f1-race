@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import * as DriverSelectors from './store/drivers.selectors';
-import * as DriverActions from './store/drivers.actions';
+import { DriversListActions, DriversListSelectors } from './store';
 import { combineLatest, map } from 'rxjs';
-import { Driver } from '../models';
+import { Driver } from '@drivers/models';
 import { PageEvent } from '@angular/material/paginator';
 
 @Component({
@@ -43,12 +42,12 @@ export class DriversComponent {
 displayedColumns = this.columns.map(c => c.columnDef);
 
 vm$ = combineLatest([
-    this.store.select(DriverSelectors.selectAllDrivers),
-    this.store.select(DriverSelectors.selectTotalDrivers),
-    this.store.select(DriverSelectors.selectCurrentPageSize),
-    this.store.select(DriverSelectors.selectCurrentPage),
-    this.store.select(DriverSelectors.selectPageSizeOptions),
-    this.store.select(DriverSelectors.SelectIsLoadingDriverList),
+    this.store.select(DriversListSelectors.selectAllDrivers),
+    this.store.select(DriversListSelectors.selectTotalDrivers),
+    this.store.select(DriversListSelectors.selectCurrentPageSize),
+    this.store.select(DriversListSelectors.selectCurrentPage),
+    this.store.select(DriversListSelectors.selectPageSizeOptions),
+    this.store.select(DriversListSelectors.SelectIsLoadingDriverList),
   ]).pipe(
   map(([items, totalItems, currentPageSize, currentPage, pageSizeOptions, isLoading]) => {
       return {
@@ -64,10 +63,10 @@ vm$ = combineLatest([
   constructor(private store: Store) { }
 
   ngOnInit() {
-    this.store.dispatch(DriverActions.enterDriversList());
+    this.store.dispatch(DriversListActions.enterDriversList());
   }
 
   handlePageSizeChangedOrMoved(pageOptions: PageEvent) {
-    this.store.dispatch(DriverActions.pageSizeChangedOrPageMoved({pageOptions}))
+    this.store.dispatch(DriversListActions.pageSizeChangedOrPageMoved({pageOptions}))
   }
 }

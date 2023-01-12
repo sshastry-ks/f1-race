@@ -1,5 +1,5 @@
 import { createFeatureSelector, createSelector } from "@ngrx/store";
-import { RequestState } from "src/app/models";
+import { RequestState } from '@app/models';
 import { adapter, RaceResultsState } from "./race-results.state";
 
 const selectRaceResultsFeature = createFeatureSelector<RaceResultsState>('raceResults');

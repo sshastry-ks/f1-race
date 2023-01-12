@@ -4,9 +4,9 @@ import { Store } from "@ngrx/store";
 import { RaceDetailsService } from "./race-details.service";
 import * as RaceDetailsActions from './race-details.actions';
 import * as RaceListSelectors from '../../race-list/store/race.selectors';
-import * as SeasonSelectors from '../../../seasons/store/seasons.selectors';
+import { SeasonsSelectors } from '@seasons/store';
 import { filter, map, switchMap } from "rxjs";
-import { RacesListResponse } from "src/app/models";
+import { RacesListResponse } from "@race/models";
 
 
 @Injectable()
@@ -22,7 +22,7 @@ export class RaceDetailsEffects {
         return this.actions$.pipe(
             ofType(RaceDetailsActions.loadRaceEntity),
             concatLatestFrom(() => [
-                this.store.select(SeasonSelectors.selectActiveSeason),
+                this.store.select(SeasonsSelectors.selectActiveSeason),
                 this.store.select(RaceListSelectors.selectActiveRaceId)
             ]),
             filter(([_, season, raceId]) => {

@@ -1,7 +1,7 @@
 import { Action, createReducer, on } from "@ngrx/store";
 import { adapter, initalRaceListState, RaceListState } from "./race.state";
 import * as RaceListActions from './race.actions';
-import { RequestState } from "src/app/models";
+import { RequestState } from '@app/models';
 
 const reducer = createReducer(
     initalRaceListState,

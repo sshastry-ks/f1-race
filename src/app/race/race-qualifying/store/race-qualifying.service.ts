@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { RacesQualifyingListResponse } from 'src/app/models';
+import { RacesQualifyingListResponse } from '@race/models';
 
 @Injectable()
 export class RaceQualifyingListService {

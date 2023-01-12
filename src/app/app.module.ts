@@ -5,12 +5,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { Test } from './test-service';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
-import { CustomSerializer } from './store/app-route-serializer';
-import { reducers } from './store/app.reducer';
+import { CustomSerializer } from '@app/store';
+import { reducers } from '@app/store';
 
 @NgModule({
   declarations: [
@@ -30,7 +29,6 @@ import { reducers } from './store/app.reducer';
     // remove in production builds
     StoreDevtoolsModule.instrument({maxAge: 25}),
   ],
-  providers: [Test],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

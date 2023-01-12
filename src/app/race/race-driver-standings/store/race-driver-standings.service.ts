@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { RaceDriverStandingsResponse } from 'src/app/models';
+import { RaceDriverStandingsResponse } from '@race/models';
 
 @Injectable()
 export class RaceDriverStandingsListService {

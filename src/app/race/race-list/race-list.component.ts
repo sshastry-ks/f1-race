@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import * as RaceListSelectors from './store/race.selectors';
-import * as RaceListActions from './store/race.actions';
+import { RaceListSelectors, RaceListActions } from './store';
 import { combineLatest, map } from 'rxjs'
-import { Race } from 'src/app/models';
+import { Race } from '@race/models';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PageEvent } from '@angular/material/paginator';
 

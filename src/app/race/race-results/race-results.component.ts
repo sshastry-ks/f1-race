@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import * as RaceResultActions from './store/race-results.actions';
-import * as RaceResultSelectors from './store/race-results.selectors';
+import { RaceResultsActions, RaceResultSelectors } from './store'
 import { combineLatest, map } from 'rxjs';
-import { RaceResult } from 'src/app/models';
+import { RaceResult } from '@race/models';
 import { PageEvent } from '@angular/material/paginator';
 
 @Component({
@@ -74,10 +73,10 @@ export class RaceResultsComponent {
   constructor(private store: Store) { }
 
   ngOnInit() {
-    this.store.dispatch(RaceResultActions.enterRaceResultsList());
+    this.store.dispatch(RaceResultsActions.enterRaceResultsList());
   }
 
   handlePageSizeChangedOrMoved(pageOptions: PageEvent) {
-    this.store.dispatch(RaceResultActions.pageSizeChangedOrPageMoved({pageOptions}))
+    this.store.dispatch(RaceResultsActions.pageSizeChangedOrPageMoved({pageOptions}))
   }
 }

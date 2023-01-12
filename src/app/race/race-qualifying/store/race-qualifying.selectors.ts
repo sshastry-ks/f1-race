@@ -1,5 +1,5 @@
 import { createFeatureSelector, createSelector } from "@ngrx/store";
-import { RequestState } from "src/app/models";
+import { RequestState } from '@app/models';
 import { RaceQualifyingListState, adapter } from "./race-qualifying.state";
 
 const selectRaceQualifyingListFeature =

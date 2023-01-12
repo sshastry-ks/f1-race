@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { RacesListResponse } from 'src/app/models';
+import { RacesListResponse } from '@race/models';
 
 @Injectable()
 export class RaceService {
@@ -11,7 +11,9 @@ export class RaceService {
 
     public getRacesList(season: string, offset: number, limit: number) {
         const params = new HttpParams().set('limit', limit).set('offset', offset);
-        return this.httpClient.get<RacesListResponse>(this.RACE_LIST_URL.replace('{{year}}', season), {params});
+        return this.httpClient.get<RacesListResponse>(
+            this.RACE_LIST_URL.replace('{{year}}', season), {params}
+        );
     }
 
 }

@@ -1,6 +1,6 @@
 import { PageEvent } from "@angular/material/paginator";
 import { createAction, props } from "@ngrx/store";
-import { Driver } from "src/app/models";
+import { Driver } from "@drivers/models";
 
 export const enterDriversList = createAction('[Drivers List Page] Enter driver list page');
 

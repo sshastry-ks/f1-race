@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-import * as RaceDriverStandingsListActions from './store/race-driver-standings.actions';
-import * as RaceDriverStandingsListSelectors from './store/race-driver-standings.selectors';
+import {RaceDriverStandingsListActions, RaceDriverStandingsListSelectors } from './store';
 import { Store } from '@ngrx/store';
-import { DriverStanding } from 'src/app/models';
+import { DriverStanding } from '@race/models';
 import { combineLatest, map } from 'rxjs';
 import { PageEvent } from '@angular/material/paginator';
 

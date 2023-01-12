@@ -1,5 +1,5 @@
 import { createFeatureSelector, createSelector } from "@ngrx/store";
-import { RequestState } from "src/app/models";
+import { RequestState } from '@app/models';
 import {  StatusCountsState } from "./status-counts.state";
 
 const selectStatusCountsFeature = createFeatureSelector<StatusCountsState>('statusCounts');

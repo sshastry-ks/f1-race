@@ -1,6 +1,6 @@
 import { PageEvent } from "@angular/material/paginator";
 import { createAction, props } from "@ngrx/store";
-import { DriverStanding } from "src/app/models";
+import { DriverStanding } from '@race/models';
 
 export const enterRaceDriverStandingsList = createAction(
     '[Race Driver-standings List Page] Enter race driver-standings list page'

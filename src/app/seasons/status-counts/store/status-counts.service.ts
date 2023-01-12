@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { StatusCountsResponse } from "src/app/models";
+import { StatusCountsResponse } from "@seasons/status-counts/models";
 
 @Injectable()
 export class StatusCountsService {

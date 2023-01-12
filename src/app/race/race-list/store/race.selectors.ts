@@ -1,5 +1,5 @@
 import { createFeatureSelector, createSelector } from "@ngrx/store";
-import { RequestState } from "src/app/models";
+import { RequestState } from '@app/models';
 import { adapter, RaceListState } from "./race.state";
 import * as AppSelectors from '../../../store/app.selectors';
 import { RouterState } from "src/app/store/app-route-serializer";

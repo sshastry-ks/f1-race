@@ -4,8 +4,8 @@ import { RouterState } from "./app-route-serializer";
 
 export interface State {
     router: RouterReducerState<RouterState>;
-  }
+}
     
-  export const reducers: ActionReducerMap<State> = {
+export const reducers: ActionReducerMap<State> = {
     router: routerReducer
-  };
+};

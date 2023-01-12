@@ -22,7 +22,13 @@
     "lib": [
       "ES2022",
       "dom"
-    ]
+    ],
+    "paths": {
+      "@app/*": ["src/app/*"],
+      "@seasons/*": ["src/app/seasons/*"],
+      "@drivers/*": ["src/app/drivers/*"],
+      "@race/*": ["src/app/race/*"]
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

@@ -1,7 +1,7 @@
 import { Action, createReducer, on, State } from "@ngrx/store";
 import { adapter, DriversListState, initalDriversListState } from "./drivers.state";
 import * as DriverAtcions from './drivers.actions';
-import { RequestState } from "src/app/models";
+import { RequestState } from '@app/models';
 
 const reducer = createReducer(
     initalDriversListState,

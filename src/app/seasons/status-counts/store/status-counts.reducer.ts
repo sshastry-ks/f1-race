@@ -1,7 +1,7 @@
 import { Action, createReducer, on } from "@ngrx/store";
 import { initialStatusCounts, StatusCountsState } from "./status-counts.state";
 import * as StatusCountsActions from './status-counts.actions';
-import { RequestState } from "src/app/models";
+import { RequestState } from '@app/models';
 
 const reducer = createReducer(
     initialStatusCounts,

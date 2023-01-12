@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import * as StatusCountsSelectors from './store/status-counts.selectors';
-import * as StatusCountsActions from './store/status-counts.actions';
+import { StatusCountsSelectors, StatusCountsActions } from './store';
 import { combineLatest, map } from 'rxjs';
 
 @Component({

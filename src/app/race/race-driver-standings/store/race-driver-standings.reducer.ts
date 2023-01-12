@@ -1,6 +1,6 @@
 import { Action, createReducer, on } from "@ngrx/store";
 import * as RaceDriverStandingsListActions from './race-driver-standings.actions';
-import { RequestState } from "src/app/models";
+import { RequestState } from '@app/models';
 import { RaceDriverStandingsListState, initalRaceDriverStandingsListState, adapter } from "./race-driver-standings.state";
 
 const reducer = createReducer(

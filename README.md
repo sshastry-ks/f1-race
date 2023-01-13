@@ -1,6 +1,10 @@
-# F1Race
+# F1 Race
 
 An application to show F1 results from season 2018 through 2021.
+
+## Deployment
+
+The application is hosted and can be accessed using [this link](https://f1-race-czs43j3oq-sshastry-ks.vercel.app/)
 
 ## Demo
 

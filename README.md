@@ -10,11 +10,11 @@ The application is hosted and can be accessed using [this link](https://f1-race.
 
 ![app-demo](./readme-assets/f1-app-demo.gif)
 
-## App Structure
+## App structure
 
 Based on the requirements to showcase F1 race related details, I came up with the following app structure.
 
-![app-structure](./readme-assets/app-architecture.png)
+![app-structure](./readme-assets//f1-race-app-structure.png)
 
 ## Few code design highlights
 
